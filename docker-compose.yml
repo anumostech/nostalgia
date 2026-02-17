@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nostalgiaapp_app
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: nostalgiaapp
+      DB_USERNAME: nostalgiauser
+      DB_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - nostalgiaapp_network
+
+  db:
+    image: mysql:8.0
+    container_name: nostalgiaapp_db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nostalgiaapp
+      MYSQL_USER: nostalgiauser
+      MYSQL_PASSWORD: password
+    volumes:
+      - nostalgiaapp_dbdata:/var/lib/mysql
+    networks:
+      - nostalgiaapp_network
+
+  web:
+    image: nginx:alpine
+    container_name: nostalgiaapp_nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    networks:
+      - nostalgiaapp_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: nostalgiaapp_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - nostalgiaapp_network
+
+volumes:
+  nostalgiaapp_dbdata:
+
+networks:
+  nostalgiaapp_network:
+    driver: bridge
