@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('unit'); // Btl, Box, Kg, PCS, Ltr
 
             $table->boolean('status')->default(1);
+            $table->boolean('is_featured')->default(0);
+            $table->boolean('is_recommend')->default(0);
+            $table->boolean('is_top_rated')->default(0);
+            $table->boolean('is_onsale')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

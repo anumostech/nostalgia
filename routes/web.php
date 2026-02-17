@@ -15,6 +15,13 @@ Route::get('/product/{product_id}', [ProductController::class, 'showProduct'])->
 
 Route::get('/categories', [CategoryController::class, 'index'])->name(RouteNames::CATEGORY_LIST);
 Route::get('/categories/{category_id}', [CategoryController::class, 'showCategory'])->name(RouteNames::CATEGORY_SHOW);
+
+//Admin Routes
+Route::prefix('administrator')->group(function () {
+    Route::get('/', [AuthController::class, 'showLogin'])->name(RouteNames::LOGIN);
+});
+
+
 // Route::post('/login', [AuthController::class, 'login'])->name(RouteNames::AUTH_LOGIN_POST);
 
 // //Error pages
