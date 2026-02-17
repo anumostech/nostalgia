@@ -65,6 +65,10 @@ class ProductController extends Controller
         );
     }
 
+    public function addProduct(){
+        return view('admin.products');
+    }
+
     public function create()
     {
         $categories = Category::all();

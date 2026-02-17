@@ -54,4 +54,14 @@ class CategoryController extends Controller
             'latest' => $latest
         ]);
     }
+
+    public function addCategory()
+    {
+        return view('admin.categories');
+    }
+
+    public function indexAdminCategory()
+    {
+        return view('admin.categories');
+    }
 }

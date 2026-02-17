@@ -42,12 +42,13 @@
                     <h2 class="fs-20 fw-bolder mb-4 text-center">Login</h2>
                     <h4 class="fs-13 fw-bold mb-2 text-center">Login to your account</h4>
                     <!-- <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p> -->
-                    <form action="index.html" class="w-100 mt-4 pt-2">
+                    <form action="{{ route(\App\Constants\RouteNames::AUTH_LOGIN_POST)}}" method="POST" class="w-100 mt-4 pt-2">
+                        @csrf
                         <div class="mb-4">
-                            <input type="email" class="form-control" placeholder="Email or Username" value="wrapcode.info@gmail.com" required>
+                            <input type="email" class="form-control" placeholder="Email or Username" name="email" required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Password" value="123456" required>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
