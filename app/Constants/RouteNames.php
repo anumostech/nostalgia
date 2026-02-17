@@ -6,7 +6,7 @@ class RouteNames
 {
     public const LOGIN = 'login';
     public const LOGOUT = 'logout';
-    public const DASHBOARD = 'account.dashboard';
+    public const DASHBOARD = 'administrator.dashboard';
 
     // Auth
     public const AUTH_LOGIN_POST = 'login.post';
@@ -47,21 +47,23 @@ class RouteNames
 
     // Categories
     public const CATEGORY_LIST   = 'account.categories.list';
-    public const CATEGORY_ADD    = 'account.categories.add';
-    public const CATEGORY_STORE  = 'account.categories.store';
-    public const CATEGORY_SHOW   = 'account.categories.show';
-    public const CATEGORY_EDIT   = 'account.categories.edit';
-    public const CATEGORY_UPDATE = 'account.categories.update';
-    public const CATEGORY_DELETE = 'account.categories.delete';
+    public const ADMIN_CATEGORY_LIST   = 'administrator.admin.categories.list';
+    public const CATEGORY_ADD    = 'administrator.categories.add';
+    public const CATEGORY_STORE  = 'administrator.categories.store';
+    public const CATEGORY_SHOW   = 'administrator.categories.show';
+    public const CATEGORY_EDIT   = 'administrator.categories.edit';
+    public const CATEGORY_UPDATE = 'administrator.categories.update';
+    public const CATEGORY_DELETE = 'administrator.categories.delete';
 
     //Products
     public const PRODUCT_LIST   = 'account.products.list';
-    public const PRODUCT_ADD    = 'account.products.add';
-    public const PRODUCT_STORE  = 'account.products.store';
-    public const PRODUCT_SHOW   = 'account.products.show';
-    public const PRODUCT_EDIT   = 'account.products.edit';
-    public const PRODUCT_UPDATE = 'account.products.update';
-    public const PRODUCT_DELETE = 'account.products.delete';
+    public const ADMIN_PRODUCT_LIST   = 'administrator.products.list';
+    public const PRODUCT_ADD    = 'administrator.products.add';
+    public const PRODUCT_STORE  = 'administrator.products.store';
+    public const PRODUCT_SHOW   = 'administrator.products.show';
+    public const PRODUCT_EDIT   = 'administrator.products.edit';
+    public const PRODUCT_UPDATE = 'administrator.products.update';
+    public const PRODUCT_DELETE = 'administrator.products.delete';
 
     // Orders
     public const ORDER_LIST   = 'account.orders.list';

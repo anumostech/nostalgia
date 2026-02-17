@@ -4,11 +4,11 @@ use App\Constants\RouteNames;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::prefix('apps')->middleware('auth')->group(function () {
+Route::prefix('administrator')->middleware('auth')->group(function () {
 
     Route::prefix('products')->group(function () {
 
-        Route::get('/', [ProductController::class, 'indexProduct'])->name(RouteNames::PRODUCT_LIST);
+        Route::get('/list', [ProductController::class, 'indexAdminProduct'])->name(RouteNames::ADMIN_PRODUCT_LIST);
         Route::get('/add', [ProductController::class, 'addProduct'])->name(RouteNames::PRODUCT_ADD);
         Route::post('/store', [ProductController::class, 'storeProduct'])->name(RouteNames::PRODUCT_STORE);
         Route::get('/{id}', [ProductController::class, 'showProduct'])->name(RouteNames::PRODUCT_SHOW);

@@ -1,7 +1,7 @@
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/assets/images/favicon.ico') }}" />
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/logo.png') }}" />
 <!--! END: Favicon-->
 <!--! BEGIN: Bootstrap CSS-->
-<link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/bootstrap.min.css') }}" />	
 <!--! END: Bootstrap CSS-->
 <!--! BEGIN: Vendors CSS-->
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/vendors/css/vendors.min.css') }}" />
