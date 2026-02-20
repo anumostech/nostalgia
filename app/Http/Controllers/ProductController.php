@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Constants\RouteNames;
+use Illuminate\Container\Attributes\Storage;
 
 class ProductController extends Controller
 {
-    public function indexProduct()
+    public function indexProduct(Request $request)
     {
         $recommend_products = Product::where('status', 1)
             ->where('is_recommend', 1)
@@ -24,6 +27,10 @@ class ProductController extends Controller
             ->latest()
             ->paginate(15);
 
+        if ($request->ajax()) {
+            return view('components.product-items', compact('products'))->render();
+        }
+
         $filter_categories = Category::withCount(['products' => function ($query) {
             $query->where('status', 1);
         }])->get();
@@ -37,6 +44,17 @@ class ProductController extends Controller
             'filter_categories' => $filter_categories,
             'recommend_products' => $recommend_products,
             'latest' => $latest
+        ]);
+    }
+
+    public function indexAdminProduct()
+    {
+        $products = Product::with('category')
+            ->latest()
+            ->paginate(50);
+
+        return view('admin.products.list-products', [
+            'products' => $products
         ]);
     }
 
@@ -65,8 +83,15 @@ class ProductController extends Controller
         );
     }
 
-    public function addProduct(){
-        return view('admin.products');
+    public function addProduct()
+    {
+        $categories = Category::where('status', 1)
+            ->latest()
+            ->get();
+
+        return view('admin.products.add-product', [
+            'categories' => $categories
+        ]);
     }
 
     public function create()
@@ -78,12 +103,24 @@ class ProductController extends Controller
     public function storeProduct(Request $request)
     {
         $request->validate([
-            'category_id' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
-            'unit' => 'required|string'
+            'unit' => 'required|string|max:50',
+            'is_on_sale' => 'nullable',
+            'description' => 'nullable|string',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Handle image upload if exists
+        $imageName = null;
+
+        if ($request->hasFile('product_image')) {
+            $file = $request->file('product_image');
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('products', $imageName, 'public');
+        }
 
         Product::create([
             'category_id' => $request->category_id,
@@ -94,30 +131,37 @@ class ProductController extends Controller
             'vat_percentage' => 5,
             'stock_quantity' => $request->stock_quantity,
             'unit' => $request->unit,
+            'is_onsale' => $request->has('is_on_sale') ? 1 : 0,
             'status' => $request->status ?? 1,
+            'image' => $imageName,
         ]);
 
-        return redirect()->route('admin.products.index')
+        return redirect()->route(RouteNames::ADMIN_PRODUCT_LIST)
             ->with('success', 'Product created successfully');
     }
 
-    public function editProduct(Product $product)
+
+    public function editProduct($id)
     {
-        $categories = Category::all();
+        $product = Product::findOrFail($id);
+        $categories = Category::where('status', 1)->get();
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    public function updateProduct(Request $request, Product $product)
+    public function updateProduct(Request $request, $id)
     {
+        $product = Product::findOrFail($id);
+
         $request->validate([
-            'category_id' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'stock_quantity' => 'required|integer',
-            'unit' => 'required|string'
+            'unit' => 'required|string',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $product->update([
+        $data = [
             'category_id' => $request->category_id,
             'name' => $request->name,
             'slug' => Str::slug($request->name),
@@ -125,18 +169,38 @@ class ProductController extends Controller
             'price' => $request->price,
             'stock_quantity' => $request->stock_quantity,
             'unit' => $request->unit,
+            'is_onsale' => $request->has('is_on_sale') ? 1 : 0,
             'status' => $request->status ?? 1,
-        ]);
+        ];
 
-        return redirect()->route('admin.products.index')
+        if ($request->hasFile('product_image')) {
+            // Delete old image
+            if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists('products/' . $product->image)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete('products/' . $product->image);
+            }
+
+            $file = $request->file('product_image');
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('products', $imageName, 'public');
+            $data['image'] = $imageName;
+        }
+
+        $product->update($data);
+
+        return redirect()->route(RouteNames::ADMIN_PRODUCT_LIST)
             ->with('success', 'Product updated successfully');
     }
 
-    public function deleteProduct(Product $product)
+    public function deleteProduct($id)
     {
+        $product = Product::findOrFail($id);
+
+        if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists('products/' . $product->image)) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete('products/' . $product->image);
+        }
+
         $product->delete();
 
-        return redirect()->back()
-            ->with('success', 'Product deleted successfully');
+        return redirect()->route(RouteNames::ADMIN_PRODUCT_LIST)->with('success', 'Product deleted successfully');
     }
 }

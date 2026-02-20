@@ -10,6 +10,10 @@ class RouteNames
 
     // Auth
     public const AUTH_LOGIN_POST = 'login.post';
+    public const FORGOT_PASSWORD = 'password.forgot';
+    public const FORGOT_PASSWORD_POST = 'password.forgot.post';
+    public const RESET_PASSWORD = 'password.reset';
+    public const RESET_PASSWORD_POST = 'password.reset.post';
 
     //Errors
     public const FORBIDDEN_ERROR = 'errors.forbiddenerror';
@@ -26,6 +30,11 @@ class RouteNames
     public const USER_EDIT = 'account.users.user-edit';
     public const USER_UPDATE = 'account.users.user-update';
     public const USER_DELETE = 'account.users.user-delete';
+
+    // Profile
+    public const PROFILE_SETTINGS = 'account.profile.settings';
+    public const PROFILE_UPDATE = 'account.profile.update';
+    public const PROFILE_CHANGE_PASSWORD = 'account.profile.change-password';
 
     // Users  Details
     public const USER_DETAIL_ADD = 'account.users.user-details-add';
@@ -47,7 +56,7 @@ class RouteNames
 
     // Categories
     public const CATEGORY_LIST   = 'account.categories.list';
-    public const ADMIN_CATEGORY_LIST   = 'administrator.admin.categories.list';
+    public const ADMIN_CATEGORY_LIST   = 'administrator.admin.categories';
     public const CATEGORY_ADD    = 'administrator.categories.add';
     public const CATEGORY_STORE  = 'administrator.categories.store';
     public const CATEGORY_SHOW   = 'administrator.categories.show';
@@ -57,7 +66,7 @@ class RouteNames
 
     //Products
     public const PRODUCT_LIST   = 'account.products.list';
-    public const ADMIN_PRODUCT_LIST   = 'administrator.products.list';
+    public const ADMIN_PRODUCT_LIST   = 'administrator.products';
     public const PRODUCT_ADD    = 'administrator.products.add';
     public const PRODUCT_STORE  = 'administrator.products.store';
     public const PRODUCT_SHOW   = 'administrator.products.show';
@@ -91,5 +100,15 @@ class RouteNames
 
     //Website Constants
     public const HOME = 'website.index';
+    public const ABOUT = 'website.about';
+    public const CART = 'website.cart';
+    public const CHECKOUT = 'website.checkout';
+    public const CONTACT = 'website.contact';
+    public const FAQ = 'website.faq';
+    public const MY_ACCOUNT = 'website.my-account';
+    public const PRIVACY = 'website.privacy';
+    public const TERMS_AND_CONDITIONS = 'website.terms-and-conditions';
+    public const TRACK_YOUR_ORDER = 'website.track-your-order';
+    public const WISHLIST = 'website.wishlist';
 
 }

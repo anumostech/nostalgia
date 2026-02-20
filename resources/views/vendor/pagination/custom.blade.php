@@ -1,5 +1,15 @@
 @if ($paginator->hasPages())
-<ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style">
+<div class="d-flex justify-content-between align-items-center mb-2">
+
+    {{-- Showing Results --}}
+    <div class="small text-muted">
+        Showing {{ $paginator->firstItem() }}
+        to {{ $paginator->lastItem() }}
+        of {{ $paginator->total() }} results
+    </div>
+
+    {{-- Pagination --}}
+    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style">
 
     {{-- Previous Page Link --}}
     <li>
@@ -44,4 +54,5 @@
     </li>
 
 </ul>
+</div>
 @endif

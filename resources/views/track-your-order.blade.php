@@ -1,4 +1,4 @@
-<?php include('header.php') ?>
+@include('header')
 
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content" role="main">
@@ -61,4 +61,4 @@
             </div>
         </main>
         <!-- ========== END MAIN CONTENT ========== -->
-<?php include('footer.php') ?>
+@include('footer')
