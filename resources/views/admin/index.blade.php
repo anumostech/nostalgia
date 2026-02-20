@@ -42,7 +42,7 @@
                         <h5 class="m-b-10">Dashboard</h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route(\App\Constants\RouteNames::LOGOUT) }}">Home</a></li>
                         <li class="breadcrumb-item">Dashboard</li>
                     </ul>
                 </div>
@@ -116,7 +116,7 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Sales</a>
                                         <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">${{ $totalSales ?? 0 }}</span>
+                                            <span class="fs-12 text-dark">AED{{ $totalSales ?? 0 }}</span>
                                             <span class="fs-11 text-muted">(0%)</span>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Income</a>
                                         <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">${{ $totalIncome ?? 0 }}</span>
+                                            <span class="fs-12 text-dark">AED{{ $totalIncome ?? 0 }}</span>
                                             <span class="fs-11 text-muted">(0%)</span>
                                         </div>
                                     </div>
@@ -371,20 +371,7 @@
             <!-- [ Main Content ] end -->
         </div>
         <!-- [ Footer ] start -->
-        <footer class="footer">
-            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
-                <span>Copyright ©</span>
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-            </p>
-            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright"> <span> Nostalgia Sweets</span></p>
-            <!-- <div class="d-flex align-items-center gap-4">
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a>
-            </div> -->
-        </footer>
+        
         <!-- [ Footer ] end -->
     </main>
     <!--! ================================================================ !-->

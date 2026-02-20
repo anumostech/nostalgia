@@ -1,9 +1,9 @@
 <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="{{ route(\App\Constants\Routenames::DASHBOARD) }}" class="b-brand">
+                <a href="{{ route(\App\Constants\RouteNames::DASHBOARD) }}" class="b-brand">
                     <!-- ========   change your logo hear   ============ -->
-                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="" class="logo logo-lg" />
+                    <img src="{{ asset('assets/img/logo/logo.png') }}" alt="" class="logo logo-lg" style="height:65px;"/>
                     <img src="{{ asset('assets/img/logo/logo.png') }}" alt="" class="logo logo-sm" />
                 </a>
             </div>
@@ -13,7 +13,7 @@
                         <!-- <label>Navigation</label> -->
                     </li>
                     <li class="nxl-item nxl-hasmenu">
-                        <a href="{{ route(\App\Constants\Routenames::DASHBOARD) }}" class="nxl-link">
+                        <a href="{{ route(\App\Constants\RouteNames::DASHBOARD) }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
                             <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"></span>
                         </a>
@@ -28,8 +28,8 @@
                             <span class="nxl-mtext">Products</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\Routenames::ADMIN_PRODUCT_LIST) }}">List Products</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\Routenames::PRODUCT_ADD) }}">Add Product</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::ADMIN_PRODUCT_LIST) }}">List Products</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::PRODUCT_ADD) }}">Add Product</a></li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -38,8 +38,8 @@
                             <span class="nxl-mtext">Categories</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\Routenames::CATEGORY_LIST) }}">List Categories</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\Routenames::CATEGORY_ADD) }}">Add Category</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::ADMIN_CATEGORY_LIST) }}">List Categories</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::CATEGORY_ADD) }}">Add Category</a></li>
                         </ul>
                     </li>
                     <!-- <li class="nxl-item nxl-hasmenu">

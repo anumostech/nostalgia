@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/vendor/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/hs-megamenu/src/hs.megamenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/ion-rangeslider/css/ion.rangeSlider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/fancybox/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/slick-carousel/slick/slick.css') }}">
@@ -32,7 +33,12 @@
 
     <!-- CSS Electro Template -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
-
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,7 +59,7 @@
                                     <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Al Sajaah Industrial Area-Sharjah</a>
                                 </li>
                                 <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                    <a href="track-your-order.php" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
+                                    <a href="{{ route(\App\Constants\RouteNames::TRACK_YOUR_ORDER ) }}" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
                                 </li>
                                 <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
                                     <div class="d-flex align-items-center">
@@ -72,7 +78,7 @@
                                                 data-unfold-animation-in="slideInUp"
                                                 data-unfold-animation-out="fadeOut">
                                                 <span class="d-inline-block d-sm-none">US</span>
-                                                <span class="d-none d-sm-inline-flex align-items-center"> AED</span>
+                                                <span class="d-none d-sm-inline-flex align-items-center"> <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/></div></span>
                                             </a>
 
                                             <!--<div id="languageDropdown" class="dropdown-menu dropdown-unfold" aria-labelledby="languageDropdownInvoker">-->
@@ -214,13 +220,13 @@
                                                         <!-- End Single Product Pages -->
                                                         <!-- Shop Pages -->
                                                         <li class="u-has-submenu u-header-collapse__submenu">
-                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="about.php" data-target="#headerSidebarPagesCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarPagesCollapse">
+                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="{{ route(\App\Constants\RouteNames::ABOUT) }}" data-target="#headerSidebarPagesCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarPagesCollapse">
                                                                 About Us
                                                             </a>
 
                                                         </li>
                                                         <li class="u-has-submenu u-header-collapse__submenu">
-                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="contact.php" data-target="#headerSidebarPagesCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarPagesCollapse">
+                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="{{ route(\App\Constants\RouteNames::CONTACT) }}" data-target="#headerSidebarPagesCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarPagesCollapse">
                                                                 Contact Us
                                                             </a>
 
@@ -230,7 +236,7 @@
 
                                                         <!-- Ecommerce Pages -->
                                                         <li class="u-has-submenu u-header-collapse__submenu">
-                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="faq.php" data-target="#headerSidebarDemosCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarDemosCollapse">
+                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="{{ route(\App\Constants\RouteNames::FAQ) }}" data-target="#headerSidebarDemosCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarDemosCollapse">
                                                                 FAQ
                                                             </a>
 
@@ -239,7 +245,7 @@
 
                                                         <!-- Shop Columns -->
                                                         <li class="u-has-submenu u-header-collapse__submenu">
-                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="privacy.php" data-target="#headerSidebardocsCollapse" role="button" aria-expanded="false" aria-controls="headerSidebardocsCollapse">
+                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="{{ route(\App\Constants\RouteNames::PRIVACY) }}" data-target="#headerSidebardocsCollapse" role="button" aria-expanded="false" aria-controls="headerSidebardocsCollapse">
                                                                 Privacy
                                                             </a>
 
@@ -248,7 +254,7 @@
 
                                                         <!-- Blog Pages -->
                                                         <li class="u-has-submenu u-header-collapse__submenu">
-                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="terms-and-conditions.php" data-target="#headerSidebarblogsCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarblogsCollapse">
+                                                            <a class="u-header-collapse__nav-link u-header-collapse__nav-pointer no-arrow" href="{{ route(\App\Constants\RouteNames::TERMS_AND_CONDITIONS ) }}" data-target="#headerSidebarblogsCollapse" role="button" aria-expanded="false" aria-controls="headerSidebarblogsCollapse">
                                                                 Terms Of Use
                                                             </a>
 
@@ -326,10 +332,10 @@
                                     </li>
                                     <!-- End Search -->
                                     <!--<li class="col d-none d-xl-block"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.php" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="Compare"><i class="font-size-22 ec ec-compare"></i></a></li>-->
-                                    <li class="col d-none d-xl-block"><a href="wishlist.php" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="Favorites"><i class="font-size-22 ec ec-favorites"></i></a></li>
-                                    <li class="col d-xl-none px-2 px-sm-3"><a href="my-account.php" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="My Account"><i class="font-size-22 ec ec-user"></i></a></li>
+                                    <li class="col d-none d-xl-block"><a href="{{ route(\App\Constants\RouteNames::WISHLIST ) }}" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="Favorites"><i class="font-size-22 ec ec-favorites"></i></a></li>
+                                    <li class="col d-xl-none px-2 px-sm-3"><a href="{{ route(\App\Constants\RouteNames::MY_ACCOUNT ) }}" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="My Account"><i class="font-size-22 ec ec-user"></i></a></li>
                                     <li class="col pr-xl-0 px-2 px-sm-3">
-                                        <a href="cart.php" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Cart">
+                                        <a href="{{ route(\App\Constants\RouteNames::CART) }}" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Cart">
                                             <i class="font-size-22 ec ec-shopping-bag"></i>
                                             <span class="bg-lg-down-black width-22 height-22 bg-primary position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12">2</span>
                                             <!--<span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">AED1785.00</span>-->
@@ -368,11 +374,11 @@
                                                     <span class="u-header__sub-menu-title">Home & Other Pages</span>
                                                     <ul class="u-header__sub-menu-nav-group">
                                                         <li><a href="{{ route(\App\Constants\RouteNames::HOME) }}" class="nav-link u-header__sub-menu-nav-link">Home</a></li>
-                                                        <li><a href="about.php" class="nav-link u-header__sub-menu-nav-link">About Us</a></li>
-                                                        <li><a href="contact.php" class="nav-link u-header__sub-menu-nav-link">Contact Us</a></li>
-                                                        <li><a href="faq.php" class="nav-link u-header__sub-menu-nav-link">FAQ</a></li>
-                                                        <li><a href="privacy.php" class="nav-link u-header__sub-menu-nav-link">Privacy</a></li>
-                                                        <li><a href="terms-and-conditions.php" class="nav-link u-header__sub-menu-nav-link">Terms Of Use</a></li>
+                                                        <li><a href="{{ route(\App\Constants\RouteNames::ABOUT) }}" class="nav-link u-header__sub-menu-nav-link">About Us</a></li>
+                                                        <li><a href="{{ route(\App\Constants\RouteNames::CONTACT) }}" class="nav-link u-header__sub-menu-nav-link">Contact Us</a></li>
+                                                        <li><a href="{{ route(\App\Constants\RouteNames::FAQ) }}" class="nav-link u-header__sub-menu-nav-link">FAQ</a></li>
+                                                        <li><a href="{{ route(\App\Constants\RouteNames::PRIVACY) }}" class="nav-link u-header__sub-menu-nav-link">Privacy</a></li>
+                                                        <li><a href="{{ route(\App\Constants\RouteNames::TERMS_AND_CONDITIONS ) }}" class="nav-link u-header__sub-menu-nav-link">Terms Of Use</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-3">

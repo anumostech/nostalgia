@@ -137,12 +137,12 @@
                             <div class="d-flex align-items-baseline">
 
                                 <ins class="font-size-36 text-decoration-none">
-                                    AED {{ number_format($product->price, 2) }}
+                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="30" width="30"/>{{ number_format($product->price, 2) }}</div>
                                 </ins>
 
                                 @if($product->old_price)
                                 <del class="font-size-20 ml-2 text-gray-6">
-                                    AED {{ number_format($product->old_price, 2) }}
+                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->old_price, 2) }}</div>
                                 </del>
                                 @endif
 
@@ -175,7 +175,7 @@
                             </div>
 
                             <div class="ml-md-3">
-                                <a href="{{ url('cart/add/'.$product->id) }}"
+                                <a href="{{ route(\App\Constants\RouteNames::CART) }}"
                                     class="btn px-5 btn-primary-dark transition-3d-hover">
                                     <i class="ec ec-add-to-cart mr-2 font-size-20"></i>
                                     Add to Cart
@@ -498,7 +498,7 @@
                                 <div class="flex-center-between mb-1">
                                     <div class="prodcut-price">
                                         <div class="text-gray-100">
-                                            AED {{ number_format($item->price, 2) }}
+                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/> {{ number_format($item->price, 2) }}</div>
                                         </div>
                                     </div>
 

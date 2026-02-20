@@ -1,4 +1,4 @@
-<?php include('header.php') ?>
+@include('header')
         <!-- ========== MAIN CONTENT ========== -->
         <main id="content" role="main" class="cart-page">
             <!-- breadcrumb -->
@@ -42,15 +42,15 @@
                                             <a href="#" class="text-gray-32 font-size-26">×</a>
                                         </td>
                                         <td class="d-none d-md-table-cell">
-                                            <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="../../assets/img/300X300/img6.jpg" alt="Image Description"></a>
+                                            <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ asset('storage/products/1.jpg') }}" alt="Image Description"></a>
                                         </td>
 
                                         <td data-title="Product">
-                                            <a href="#" class="text-gray-90">Ultra Wireless S50 Headphones S50 with Bluetooth</a>
+                                            <a href="#" class="text-gray-90">PEANUT CHIKKI CANDY (200PCS)</a>
                                         </td>
 
                                         <td data-title="Unit Price">
-                                            <span class="">AED,100.00</span>
+                                            <span class=""><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>100.00</div></span>
                                         </td>
 
                                         <td data-title="Stock Status">
@@ -60,7 +60,7 @@
                                         </td>
 
                                         <td>
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Add to Cart</button>
+                                            <a href="{{ route(\App\Constants\RouteNames::CART) }}" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Add to Cart</a>
                                         </td>
                                     </tr>
                                     <tr class="">
@@ -68,15 +68,15 @@
                                             <a href="#" class="text-gray-32 font-size-26">×</a>
                                         </td>
                                         <td class="d-none d-md-table-cell">
-                                            <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="../../assets/img/300X300/img7.png" alt="Image Description"></a>
+                                            <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ asset('storage/products/1.jpg') }}" alt="Image Description"></a>
                                         </td>
 
                                         <td data-title="Product">
-                                            <a href="#" class="text-gray-90">Widescreen NX Mini F1 SMART NX</a>
+                                            <a href="#" class="text-gray-90">LEMON CANDY BTL (4*40)</a>
                                         </td>
 
                                         <td data-title="Unit Price">
-                                            <span class="">AED685.00</span>
+                                            <span class=""><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>685.00</div></span>
                                         </td>
 
                                         <td data-title="Stock Status">
@@ -86,7 +86,7 @@
                                         </td>
 
                                         <td>
-                                            <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Add to Cart</button>
+                                            <a href="{{ route(\App\Constants\RouteNames::CART) }}" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Add to Cart</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -98,4 +98,4 @@
         </main>
         <!-- ========== END MAIN CONTENT ========== -->
 
-<?php include('footer.php') ?>
+@include('footer')

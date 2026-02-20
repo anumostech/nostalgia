@@ -19,7 +19,11 @@ class Product extends Model
         'vat_percentage',
         'stock_quantity',
         'unit',
-        'status'
+        'status',
+        'is_featured',
+        'is_recommend',
+        'is_top_rated',
+        'is_onsale'
     ];
 
     // Product belongs to category

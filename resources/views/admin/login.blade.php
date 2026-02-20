@@ -41,14 +41,26 @@
                     </div>
                     <h2 class="fs-20 fw-bolder mb-4 text-center">Login</h2>
                     <h4 class="fs-13 fw-bold mb-2 text-center">Login to your account</h4>
+                    @error('email')
+                    <div class="text-danger text-center">{{ $message }}</div>
+                    @enderror
                     <!-- <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web applications, let's access our the best recommendation for you.</p> -->
                     <form action="{{ route(\App\Constants\RouteNames::AUTH_LOGIN_POST)}}" method="POST" class="w-100 mt-4 pt-2">
                         @csrf
                         <div class="mb-4">
                             <input type="email" class="form-control" placeholder="Email or Username" name="email" required>
                         </div>
-                        <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        <div class="mb-3 position-relative">
+                            <input type="password"
+                                class="form-control pe-5"
+                                id="password"
+                                name="password"
+                                placeholder="Password">
+
+                            <i class="bi bi-eye position-absolute"
+                                id="toggleIcon" onclick="togglePassword()"
+                                style="top:50%; right:15px; transform:translateY(-50%); cursor:pointer;">
+                            </i>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
@@ -58,7 +70,7 @@
                                 </div>
                             </div>
                             <div>
-                                <a href="auth-reset-cover.html" class="fs-11 text-primary">Forget password?</a>
+                                <a href="{{ route(\App\Constants\RouteNames::FORGOT_PASSWORD) }}" class="fs-11 text-primary">Forget password?</a>
                             </div>
                         </div>
                         <div class="mt-5">
@@ -82,7 +94,7 @@
                     <div class="mt-5 text-muted text-center">
                         <span>Nostalgia Sweets Admin Dashboard</span>
                         <!-- <a href="auth-register-cover.html" class="fw-bold">Create an Account</a> -->
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,13 +104,30 @@
     <!--! ================================================================ !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Theme Customizer !-->
-   
+
     <!--! [End] Theme Customizer !-->
     <!--! ================================================================ !-->
     <!--! ================================================================ !-->
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
-   @include('admin.footer')
+    <script>
+        function togglePassword() {
+            const password = document.getElementById("password");
+            const icon = document.getElementById("toggleIcon");
+
+            if (password.type === "password") {
+                password.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                password.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        }
+    </script>
+
+    @include('admin.footer')
 </body>
 
 </html>
