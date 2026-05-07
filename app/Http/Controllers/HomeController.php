@@ -185,4 +185,54 @@ class HomeController extends Controller
     {
         return view('wishlist');
     }
+
+    public function cancelOrder($id)
+    {
+        $order = \App\Models\Order::with('billingAddress')->findOrFail($id);
+        $user = Auth::user();
+
+        // Check if order belongs to user or matches email
+        $isOwner = $user && ($order->user_id == $user->id || ($order->billingAddress && $order->billingAddress->billing_email == $user->email));
+
+        if (!$isOwner) {
+             return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+
+        // Only allow cancellation for pending or confirmed orders
+        if (in_array($order->order_status, ['pending', 'confirmed'])) {
+            $order->update(['order_status' => 'cancelled']);
+            return redirect()->back()->with('success', 'Order cancelled successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Order cannot be cancelled at this stage.');
+    }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('profile-edit', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->only(['name', 'email', 'phone']);
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $path;
+        }
+
+        $user->update($data);
+
+        return redirect()->route(\App\Constants\RouteNames::MY_ACCOUNT)->with('success', 'Profile updated successfully.');
+    }
 }

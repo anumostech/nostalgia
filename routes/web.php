@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Auth\AuthController as WebAuthController;
 use App\Http\Controllers\Auth\OtpController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Artisan;
 
 // WEBSITE ROUTES
@@ -31,7 +32,10 @@ Route::middleware(['auth', 'verified_user'])->group(function () {
     Route::get('/wishlist', [HomeController::class, 'indexWishlist'])->name(RouteNames::WISHLIST);
 });
 
+Route::get('/profile/edit', [HomeController::class, 'editProfile'])->name('profile.edit');
+Route::post('/profile/update', [HomeController::class, 'updateProfile'])->name('profile.update');
 Route::get('/order-success/{order_id}', [CartController::class, 'orderSuccess'])->name(RouteNames::ORDER_SUCCESS);
+Route::post('/order/cancel/{id}', [HomeController::class, 'cancelOrder'])->name('order.cancel');
 Route::get('/contact', [HomeController::class, 'indexContact'])->name(RouteNames::CONTACT);
 Route::get('/faq', [HomeController::class, 'indexFaq'])->name(RouteNames::FAQ);
 Route::get('/privacy', [HomeController::class, 'indexPrivacy'])->name(RouteNames::PRIVACY);
@@ -115,7 +119,18 @@ Route::prefix('administrator')->middleware('auth:admin')->group(function () {
     // Checkout Management (Orders)
     Route::get('/orders', [DashboardController::class, 'indexOrders'])->name(RouteNames::ADMIN_ORDER_LIST);
     Route::get('/orders/{id}', [DashboardController::class, 'showOrder'])->name(RouteNames::ADMIN_ORDER_SHOW);
+    Route::get('/orders/edit/{id}', [DashboardController::class, 'editOrder'])->name(RouteNames::ORDER_EDIT);
+    Route::post('/orders/update/{id}', [DashboardController::class, 'updateOrder'])->name(RouteNames::ORDER_UPDATE);
+    Route::get('/orders/delete/{id}', [DashboardController::class, 'deleteOrder'])->name(RouteNames::ORDER_DELETE);
     Route::post('/orders/update-status/{id}', [DashboardController::class, 'updateOrderStatus'])->name(RouteNames::ADMIN_ORDER_UPDATE_STATUS);
+
+    // Admin Customers
+    Route::get('/customers', [CustomerController::class, 'index'])->name(RouteNames::CUSTOMER_LIST);
+    Route::get('/customers/add', [CustomerController::class, 'create'])->name(RouteNames::CUSTOMER_ADD);
+    Route::post('/customers/store', [CustomerController::class, 'store'])->name(RouteNames::CUSTOMER_STORE);
+    Route::get('/customers/edit/{id}', [CustomerController::class, 'edit'])->name(RouteNames::CUSTOMER_EDIT);
+    Route::post('/customers/update/{id}', [CustomerController::class, 'update'])->name(RouteNames::CUSTOMER_UPDATE);
+    Route::get('/customers/delete/{id}', [CustomerController::class, 'destroy'])->name(RouteNames::CUSTOMER_DELETE);
 });
 
 

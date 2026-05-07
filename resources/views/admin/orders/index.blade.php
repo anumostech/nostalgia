@@ -34,8 +34,8 @@
                             <div class="card-header">
                                 <h5 class="card-title">All Orders</h5>
                             </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
+                            <div class="card-body p-0" style="min-height: 400px;">
+                                <div class="table-responsive" style="overflow: visible;">
                                     <table class="table table-hover mb-0">
                                         <thead>
                                             <tr>
@@ -46,7 +46,7 @@
                                                 <th>Total</th>
                                                 <th>Status</th>
                                                 <th>Date</th>
-                                                <th class="text-end">Actions</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,12 +64,15 @@
                                                 </td>
                                                 <td>{{ $order->created_at->format('d M Y, h:i A') }}</td>
                                                 <td class="text-end">
-                                                    <div class="dropdown">
-                                                        <a href="javascript:void(0);" data-bs-toggle="dropdown"><i class="feather-more-vertical"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                             <a href="{{ route(\App\Constants\RouteNames::ADMIN_ORDER_SHOW, $order->id) }}" class="dropdown-item"><i class="feather-eye me-2"></i>View Details</a>
-                                                        </div>
-                                                    </div>
+                                                     <div class="dropdown">
+                                                         <a href="javascript:void(0);" data-bs-toggle="dropdown" class="avatar-text avatar-md"><i class="feather-more-horizontal"></i></a>
+                                                         <div class="dropdown-menu dropdown-menu-end">
+                                                              <a href="{{ route(\App\Constants\RouteNames::ADMIN_ORDER_SHOW, $order->id) }}" class="dropdown-item"><i class="feather-eye me-2"></i>View Details</a>
+                                                              <a href="{{ route(\App\Constants\RouteNames::ORDER_EDIT, $order->id) }}" class="dropdown-item"><i class="feather-edit-3 me-2"></i>Edit Order</a>
+                                                              <div class="dropdown-divider"></div>
+                                                              <a href="{{ route(\App\Constants\RouteNames::ORDER_DELETE, $order->id) }}" class="dropdown-item delete-item"><i class="feather-trash-2 me-2"></i>Delete Order</a>
+                                                         </div>
+                                                     </div>
                                                 </td>
                                             </tr>
                                             @empty
