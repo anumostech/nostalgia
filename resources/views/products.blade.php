@@ -68,10 +68,14 @@
                         <!-- End Range Slider -->
                         <div class="mt-1 text-gray-111 d-flex mb-4">
                             <span class="mr-0dot5">Filter Price Range: </span>
-                            <span><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/></div></span>
+                            <span>
+                                <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /></div>
+                            </span>
                             <span id="rangeSliderExample3MinResult" class=""></span>
                             <span class="mx-0dot5"> — </span>
-                            <span><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/></div></span>
+                            <span>
+                                <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /></div>
+                            </span>
                             <span id="rangeSliderExample3MaxResult" class=""></span>
                         </div>
                         <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Filter</button>
@@ -115,12 +119,12 @@
 
                                         @if($product->old_price)
                                         <del class="font-size-11 text-gray-9 d-block">
-                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->old_price, 2) }}</div>
+                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->old_price, 2) }}</div>
                                         </del>
                                         @endif
 
                                         <ins class="font-size-15 text-red text-decoration-none d-block">
-                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                         </ins>
 
                                     </div>
@@ -208,28 +212,44 @@
                                                 <div class="flex-center-between mb-1">
                                                     <div class="prodcut-price">
                                                         <div class="text-gray-100">
-                                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                                        <a href="{{ url('product/'.$product->id) }}"
-                                                            class="btn-add-cart btn-primary transition-3d-hover">
-                                                            <i class="ec ec-add-to-cart"></i>
-                                                        </a>
+                                                    <div class="d-xl-block prodcut-add-cart" id="cart-control-{{ $product->id }}">
+                                                        @if(isset($cartItemQuantities[$product->id]))
+                                                        <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                                <i class="fa {{ $cartItemQuantities[$product->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-10"></i>
+                                                            </button>
+                                                            <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$product->id]->id }}">{{ $cartItemQuantities[$product->id]->quantity }}</span>
+                                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                                <i class="fa fa-plus font-size-10"></i>
+                                                            </button>
+                                                        </div>
+                                                        @else
+                                                        <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $product->id }}">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="quantity" value="1">
+                                                            <button type="submit" class="btn-add-cart btn-primary transition-3d-hover">
+                                                                <i class="ec ec-add-to-cart"></i>
+                                                            </button>
+                                                        </form>
+                                                        @endif
                                                     </div>
                                                 </div>
 
                                             </div>
 
-                                            <div class="product-item__footer">
+                                            <!-- <div class="product-item__footer">
                                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                                     <a href="{{ url('wishlist/'.$product->id) }}"
                                                         class="text-gray-6 font-size-13">
                                                         <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
@@ -325,7 +345,7 @@
                                                 </a>
                                             </div>
 
-                                            
+
                                             <div class="mb-2">
                                                 <a href="{{ url('products?category='.$product->category_id) }}" class="font-size-12 text-gray-5">
                                                     {{ $product->category->name ?? 'Category' }}
@@ -342,26 +362,43 @@
                                             <div class="flex-center-between mb-1">
                                                 <div class="prodcut-price">
                                                     <div class="text-gray-100">
-                                                         <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-none d-xl-block prodcut-add-cart">
-                                                    <a href="{{ url('product/'.$product->id) }}" class="btn-add-cart btn-primary transition-3d-hover">
-                                                        <i class="ec ec-add-to-cart"></i>
-                                                    </a>
+                                                <div class="d-xl-block prodcut-add-cart" id="cart-control-{{ $product->id }}">
+                                                    @if(isset($cartItemQuantities[$product->id]))
+                                                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                            <i class="fa {{ $cartItemQuantities[$product->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-10"></i>
+                                                        </button>
+                                                        <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$product->id]->id }}">{{ $cartItemQuantities[$product->id]->quantity }}</span>
+                                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                            <i class="fa fa-plus font-size-10"></i>
+                                                        </button>
+                                                    </div>
+                                                    @else
+                                                    <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $product->id }}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit" class="btn-add-cart btn-primary transition-3d-hover">
+                                                            <i class="ec ec-add-to-cart"></i>
+                                                        </button>
+                                                    </form>
+                                                    @endif
                                                 </div>
                                             </div>
 
                                         </div>
 
-                                        <div class="product-item__footer">
+                                        <!-- <div class="product-item__footer">
                                             <div class="border-top pt-2 flex-center-between flex-wrap">
                                                 <a href="{{ url('wishlist/'.$product->id) }}" class="text-gray-6 font-size-13">
                                                     <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>
@@ -409,7 +446,7 @@
 
                                                 <div class="prodcut-price mb-2 d-md-none">
                                                     <div class="text-gray-100">
-                                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                                     </div>
                                                 </div>
 
@@ -424,24 +461,40 @@
                                             <div class="mb-3">
                                                 <div class="prodcut-price mb-2">
                                                     <div class="text-gray-100">
-                                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                                     </div>
                                                 </div>
 
-                                                <div class="prodcut-add-cart">
-                                                    <a href="{{ url('product/'.$product->id) }}"
-                                                        class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">
-                                                        Add to cart
-                                                    </a>
+                                                <div class="prodcut-add-cart" id="cart-control-{{ $product->id }}">
+                                                    @if(isset($cartItemQuantities[$product->id]))
+                                                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                            <i class="fa {{ $cartItemQuantities[$product->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-10"></i>
+                                                        </button>
+                                                        <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$product->id]->id }}">{{ $cartItemQuantities[$product->id]->quantity }}</span>
+                                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                            <i class="fa fa-plus font-size-10"></i>
+                                                        </button>
+                                                    </div>
+                                                    @else
+                                                    <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $product->id }}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit" class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">
+                                                            Add to cart
+                                                        </button>
+                                                    </form>
+                                                    @endif
                                                 </div>
                                             </div>
 
-                                            <div class="flex-horizontal-center justify-content-between justify-content-wd-center flex-wrap">
+                                            <!-- <div class="flex-horizontal-center justify-content-between justify-content-wd-center flex-wrap">
                                                 <a href="{{ url('wishlist/'.$product->id) }}"
                                                     class="text-gray-6 font-size-13 mx-wd-3">
                                                     <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
                                                 </a>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                     </div>
@@ -861,10 +914,14 @@
                                 <!-- End Range Slider -->
                                 <div class="mt-1 text-gray-111 d-flex mb-4">
                                     <span class="mr-0dot5">Filter Price Range: </span>
-                                    <span><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/></div></span>
+                                    <span>
+                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /></div>
+                                    </span>
                                     <span id="rangeSliderExample3MinResult" class=""></span>
                                     <span class="mx-0dot5"> — </span>
-                                    <span><div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/></div></span>
+                                    <span>
+                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /></div>
+                                    </span>
                                     <span id="rangeSliderExample3MaxResult" class=""></span>
                                 </div>
                                 <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Filter</button>
@@ -908,12 +965,12 @@
 
                                                 @if($product->old_price)
                                                 <del class="font-size-11 text-gray-9 d-block">
-                                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->old_price, 2) }}</div>
+                                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->old_price, 2) }}</div>
                                                 </del>
                                                 @endif
 
                                                 <ins class="font-size-15 text-red text-decoration-none d-block">
-                                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->price, 2) }}</div>
+                                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
                                                 </ins>
 
                                             </div>
@@ -935,3 +992,8 @@
 </aside>
 <!-- End Sidebar Navigation -->
 @include('footer')
+</body>
+
+<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/home-v3.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 11:04:04 GMT -->
+
+</html>

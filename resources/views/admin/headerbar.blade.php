@@ -44,7 +44,7 @@
             <!--! [Start] Header Right !-->
             <div class="header-right ms-auto">
                 <div class="d-flex align-items-center">
-                    <div class="dropdown nxl-h-item nxl-header-search">
+                    <!-- <div class="dropdown nxl-h-item nxl-header-search">
                         <a href="javascript:void(0);" class="nxl-head-link me-0" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                             <i class="feather-search"></i>
                         </a>
@@ -60,8 +60,8 @@
                             </div>
                             
                         </div>
-                    </div>
-                    <div class="dropdown nxl-h-item nxl-header-language d-none d-sm-flex">
+                    </div> -->
+                    <!-- <div class="dropdown nxl-h-item nxl-header-language d-none d-sm-flex">
                         <a href="javascript:void(0);" class="nxl-head-link me-0 nxl-language-link" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                             <img src="assets/vendors/img/flags/4x3/us.svg" alt="" class="img-fluid wd-20" />
                         </a>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="nxl-h-item d-none d-sm-flex">
                         <div class="full-screen-switcher">
                             <a href="javascript:void(0);" class="nxl-head-link me-0" onclick="$('body').fullScreenHelper('toggle');">
@@ -163,7 +163,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="nxl-h-item dark-light-theme">
+                    <div class="nxl-h-item dark-light-theme me-3">
                         <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
                             <i class="feather-moon"></i>
                         </a>
@@ -172,7 +172,7 @@
                         </a>
                     </div>
                     
-                    <div class="dropdown nxl-h-item">
+                    <!-- <div class="dropdown nxl-h-item">
                         <a class="nxl-head-link me-3" data-bs-toggle="dropdown" href="#" role="button" data-bs-auto-close="outside">
                             <i class="feather-bell"></i>
                             <span class="badge bg-danger nxl-h-badge">3</span>
@@ -186,7 +186,7 @@
                                 </a>
                             </div>
                             <div class="notifications-item">
-                                <!-- <img src="assets/images/avatar/2.png" alt="" class="rounded me-3 border" /> -->
+                                <img src="assets/images/avatar/2.png" alt="" class="rounded me-3 border" />
                                 <div class="notifications-desc">
                                     <a href="javascript:void(0);" class="font-body text-truncate-2-line"> <span class="fw-semibold text-dark">Product stock update</span>!</a>
                                     <div class="d-flex justify-content-between align-items-center">
@@ -205,18 +205,18 @@
                                 <a href="javascript:void(0);" class="fs-13 fw-semibold text-dark">Alls Notifications</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="dropdown nxl-h-item">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button" data-bs-auto-close="outside">
-                            <img src="{{ auth()->user()->avatar ? asset('storage/avatars/'.auth()->user()->avatar) : asset('assets/img/default-avatar.jpg') }}" alt="user-image" class="img-fluid user-avtar me-0" />
+                            <img src="{{ auth('admin')->user()->avatar ? asset('storage/avatars/'.auth('admin')->user()->avatar) : asset('assets/img/default-avatar.jpg') }}" alt="user-image" class="img-fluid user-avtar me-0" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ auth()->user()->avatar ? asset('storage/avatars/'.auth()->user()->avatar) : asset('assets/img/default-avatar.jpg') }}" alt="user-image" class="img-fluid user-avtar" />
+                                    <img src="{{ auth('admin')->user()->avatar ? asset('storage/avatars/'.auth('admin')->user()->avatar) : asset('assets/img/default-avatar.jpg') }}" alt="user-image" class="img-fluid user-avtar" />
                                     <div>
-                                        <h6 class="text-dark mb-0">{{ auth()->user()->name }}</h6>
-                                        <span class="fs-12 fw-medium text-muted">{{ auth()->user()->email }}</span>
+                                        <h6 class="text-dark mb-0">{{ auth('admin')->user()->name }}</h6>
+                                        <span class="fs-12 fw-medium text-muted">{{ auth('admin')->user()->email }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                             </a>
                            
                             <div class="dropdown-divider"></div>
-                            <a href="{{ route(\App\Constants\Routenames::LOGOUT) }}" class="dropdown-item">
+                            <a href="{{ route(\App\Constants\RouteNames::ADMIN_LOGOUT) }}" class="dropdown-item">
                                 <i class="feather-log-out"></i>
                                 <span>Logout</span>
                             </a>

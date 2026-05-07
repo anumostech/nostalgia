@@ -19,8 +19,8 @@ class AuthController extends Controller
      */
     public function showLogin()
     {
-        // If already logged in, redirect
-        if (Auth::check()) {
+        // If already logged in as admin, redirect
+        if (Auth::guard('admin')->check()) {
             return redirect()->route(RouteNames::DASHBOARD);
         }
 
@@ -33,20 +33,30 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         // Validate input
-        $credentials = $request->validate([
-            'email'    => 'required|email',
+        $request->validate([
+            'login'    => 'required|string',
             'password' => 'required|min:8',
         ]);
 
-        // Attempt login
-        if (Auth::attempt($credentials)) {
+        $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+        // Attempt login using admin guard
+        if (Auth::guard('admin')->attempt([$loginType => $request->login, 'password' => $request->password])) {
+            $user = Auth::guard('admin')->user();
+            
+            // Security check: Ensure the user is actually an admin
+            if (!$user->isAdmin()) {
+                Auth::guard('admin')->logout();
+                return back()->withErrors(['login' => 'Access denied. You do not have administrator privileges.']);
+            }
+
             $request->session()->regenerate(); 
             return redirect()->intended(route(RouteNames::DASHBOARD));
         }
 
         // Login failed
         return back()->withErrors([
-            'email' => 'Invalid email or password.',
+            'login' => 'Invalid email or password.',
         ])->withInput();
     }
 
@@ -55,12 +65,12 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route(RouteNames::LOGIN);
+        return redirect()->route(RouteNames::ADMIN_LOGIN);
     }
 
     /**
@@ -89,7 +99,7 @@ class AuthController extends Controller
             $message->to($request->email)->subject('Password Reset Code');
         });
 
-        return redirect()->route(RouteNames::RESET_PASSWORD)->with('success', 'Reset code sent to your email.');
+        return redirect()->route(RouteNames::ADMIN_RESET_PASSWORD)->with('success', 'Reset code sent to your email.');
     }
 
     /**
@@ -98,7 +108,7 @@ class AuthController extends Controller
     public function showResetPassword()
     {
         if (!Session::has('reset_code')) {
-            return redirect()->route(RouteNames::FORGOT_PASSWORD);
+            return redirect()->route(RouteNames::ADMIN_FORGOT_PASSWORD);
         }
         return view('admin.auth.reset-password');
     }
@@ -122,6 +132,6 @@ class AuthController extends Controller
 
         Session::forget(['reset_code', 'reset_email']);
 
-        return redirect()->route(RouteNames::LOGIN)->with('success', 'Password reset successfully.');
+        return redirect()->route(RouteNames::ADMIN_LOGIN)->with('success', 'Password reset successfully.');
     }
 }

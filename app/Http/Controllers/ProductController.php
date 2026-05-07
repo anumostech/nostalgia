@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Constants\RouteNames;
-use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -111,15 +111,46 @@ class ProductController extends Controller
             'is_on_sale' => 'nullable',
             'description' => 'nullable|string',
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Handle image upload if exists
         $imageName = null;
-
         if ($request->hasFile('product_image')) {
             $file = $request->file('product_image');
             $imageName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('products', $imageName, 'public');
+        }
+
+        $image1 = null;
+        if ($request->hasFile('product_image_1')) {
+            $file = $request->file('product_image_1');
+            $image1 = time() . '_1_' . $file->getClientOriginalName();
+            $file->storeAs('products', $image1, 'public');
+        }
+
+        $image2 = null;
+        if ($request->hasFile('product_image_2')) {
+            $file = $request->file('product_image_2');
+            $image2 = time() . '_2_' . $file->getClientOriginalName();
+            $file->storeAs('products', $image2, 'public');
+        }
+
+        $image3 = null;
+        if ($request->hasFile('product_image_3')) {
+            $file = $request->file('product_image_3');
+            $image3 = time() . '_3_' . $file->getClientOriginalName();
+            $file->storeAs('products', $image3, 'public');
+        }
+
+        $image4 = null;
+        if ($request->hasFile('product_image_4')) {
+            $file = $request->file('product_image_4');
+            $image4 = time() . '_4_' . $file->getClientOriginalName();
+            $file->storeAs('products', $image4, 'public');
         }
 
         Product::create([
@@ -134,6 +165,10 @@ class ProductController extends Controller
             'is_onsale' => $request->has('is_on_sale') ? 1 : 0,
             'status' => $request->status ?? 1,
             'image' => $imageName,
+            'image_1' => $image1,
+            'image_2' => $image2,
+            'image_3' => $image3,
+            'image_4' => $image4,
         ]);
 
         return redirect()->route(RouteNames::ADMIN_PRODUCT_LIST)
@@ -159,6 +194,10 @@ class ProductController extends Controller
             'stock_quantity' => 'required|integer',
             'unit' => 'required|string',
             'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_image_4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = [
@@ -175,14 +214,31 @@ class ProductController extends Controller
 
         if ($request->hasFile('product_image')) {
             // Delete old image
-            if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists('products/' . $product->image)) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete('products/' . $product->image);
+            if ($product->image && Storage::disk('public')->exists('products/' . $product->image)) {
+                Storage::disk('public')->delete('products/' . $product->image);
             }
 
             $file = $request->file('product_image');
             $imageName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('products', $imageName, 'public');
             $data['image'] = $imageName;
+        }
+
+        for ($i = 1; $i <= 4; $i++) {
+            $inputName = 'product_image_' . $i;
+            $dbField = 'image_' . $i;
+
+            if ($request->hasFile($inputName)) {
+                // Delete old image
+                if ($product->$dbField && Storage::disk('public')->exists('products/' . $product->$dbField)) {
+                    Storage::disk('public')->delete('products/' . $product->$dbField);
+                }
+
+                $file = $request->file($inputName);
+                $imageName = time() . '_' . $i . '_' . $file->getClientOriginalName();
+                $file->storeAs('products', $imageName, 'public');
+                $data[$dbField] = $imageName;
+            }
         }
 
         $product->update($data);
@@ -195,8 +251,15 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if ($product->image && \Illuminate\Support\Facades\Storage::disk('public')->exists('products/' . $product->image)) {
-            \Illuminate\Support\Facades\Storage::disk('public')->delete('products/' . $product->image);
+        if ($product->image && Storage::disk('public')->exists('products/' . $product->image)) {
+            Storage::disk('public')->delete('products/' . $product->image);
+        }
+
+        for ($i = 1; $i <= 4; $i++) {
+            $dbField = 'image_' . $i;
+            if ($product->$dbField && Storage::disk('public')->exists('products/' . $product->$dbField)) {
+                Storage::disk('public')->delete('products/' . $product->$dbField);
+            }
         }
 
         $product->delete();

@@ -42,6 +42,21 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::CATEGORY_ADD) }}">Add Category</a></li>
                         </ul>
                     </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="{{ route(\App\Constants\RouteNames::ADMIN_ORDER_LIST) }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-shopping-cart"></i></span>
+                            <span class="nxl-mtext">Orders</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-settings"></i></span>
+                            <span class="nxl-mtext">Settings</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::CART_THRESHOLD_ADD) }}">Cart Threshold</a></li>
+                        </ul>
+                    </li>
                     <!-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-at-sign"></i></span>

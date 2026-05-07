@@ -14,28 +14,39 @@ class Order extends Model
         'order_number',
         'subtotal',
         'vat_total',
-        'grand_total',
+        'total_amount',
         'payment_status',
         'order_status',
         'payment_method',
-        'transaction_id'
+        'transaction_id',
+        'billing_address_id',
+        'ship_to_different_address',
+        'shipping_address_id',
+        'order_notes'
     ];
 
-    // Order belongs to user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Order has many order items
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
 
-    // Order has one payment
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+     public function billingAddress()
+    {
+        return $this->belongsTo(BillingAddress::class);
+    }
+
+    public function shippingAddress()
+    {
+        return $this->belongsTo(ShippingAddress::class);
     }
 }

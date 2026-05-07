@@ -42,7 +42,7 @@
                         <h5 class="m-b-10">Dashboard</h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route(\App\Constants\RouteNames::LOGOUT) }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route(\App\Constants\RouteNames::DASHBOARD) }}">Home</a></li>
                         <li class="breadcrumb-item">Dashboard</li>
                     </ul>
                 </div>
@@ -58,7 +58,7 @@
                             <div id="reportrange" class="reportrange-picker d-flex align-items-center">
                                 <span class="reportrange-picker-field"></span>
                             </div>
-                            <div class="dropdown filter-dropdown">
+                            <!-- <div class="dropdown filter-dropdown">
                                 <a class="btn btn-md btn-light-brand" data-bs-toggle="dropdown" data-bs-offset="0, 10" data-bs-auto-close="outside">
                                     <i class="feather-filter me-2"></i>
                                     <span>Filter</span>
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="d-md-none d-flex align-items-center">
@@ -93,147 +93,155 @@
                 <div class="row">
                     <!-- [Invoices Awaiting Payment] start -->
                     <div class="col-xxl-3 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between mb-4">
-                                    <div class="d-flex gap-4 align-items-center">
-                                        <div class="avatar-text avatar-lg bg-gray-200">
-                                            AED
-                                        </div>
-                                        <div>
-                                            <div class="fs-4 fw-bold text-dark">
-                                                <span class="counter">{{ $totalSales ?? 0 }}</span> /
-                                                <span class="counter">{{ $totalPaidOrders ?? 0 }}</span>
+                        <a href="{{ route(App\Constants\RouteNames::ADMIN_ORDER_LIST) }}">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start justify-content-between mb-4">
+                                        <div class="d-flex gap-4 align-items-center">
+                                            <div class="avatar-text avatar-lg bg-gray-200">
+                                                <img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="30" width="30">
                                             </div>
-                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Sales / Paid Orders</h3>
+                                            <div>
+                                                <div class="fs-4 fw-bold text-dark">
+                                                    <span class="">{{ $totalSales ?? 0 }}</span> /
+                                                    <span class="">{{ $totalPaidOrders ?? 0 }}</span>
+                                                </div>
+                                                <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Sales / Paid Orders</h3>
+                                            </div>
                                         </div>
+                                        <a href="javascript:void(0);" class="">
+                                            <i class="feather-more-vertical"></i>
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0);" class="">
-                                        <i class="feather-more-vertical"></i>
-                                    </a>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Sales</a>
-                                        <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">AED{{ $totalSales ?? 0 }}</span>
-                                            <span class="fs-11 text-muted">(0%)</span>
+                                    <div class="pt-4">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Sales</a>
+                                            <div class="w-100 text-end">
+                                                <span class="fs-12 text-dark"><img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="12" width="12">{{ $totalSales ?? 0 }}</span>
+                                                <!-- <span class="fs-11 text-muted">(0%)</span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="progress mt-2 ht-3">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                                        <div class="progress mt-2 ht-3">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
 
                     <div class="col-xxl-3 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between mb-4">
-                                    <div class="d-flex gap-4 align-items-center">
-                                        <div class="avatar-text avatar-lg bg-gray-200">
-                                            AED
-                                        </div>
-                                        <div>
-                                            <div class="fs-4 fw-bold text-dark">
-                                                <span class="counter">{{ $totalIncome ?? 0 }}</span>
+                        <a href="{{ route(App\Constants\RouteNames::ADMIN_ORDER_LIST) }}">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start justify-content-between mb-4">
+                                        <div class="d-flex gap-4 align-items-center">
+                                            <div class="avatar-text avatar-lg bg-gray-200">
+                                                <img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="30" width="30">
                                             </div>
-                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Income</h3>
+                                            <div>
+                                                <div class="fs-4 fw-bold text-dark">
+                                                    <span class="">{{ $totalIncome ?? 0 }}</span>
+                                                </div>
+                                                <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Income</h3>
+                                            </div>
                                         </div>
+                                        <a href="javascript:void(0);" class="">
+                                            <i class="feather-more-vertical"></i>
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0);" class="">
-                                        <i class="feather-more-vertical"></i>
-                                    </a>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Income</a>
-                                        <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">AED{{ $totalIncome ?? 0 }}</span>
-                                            <span class="fs-11 text-muted">(0%)</span>
+                                    <div class="pt-4">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Income</a>
+                                            <div class="w-100 text-end">
+                                                <span class="fs-12 text-dark"><img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="12" width="12">{{ $totalIncome ?? 0 }}</span>
+                                                <!-- <span class="fs-11 text-muted">(0%)</span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="progress mt-2 ht-3">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%"></div>
+                                        <div class="progress mt-2 ht-3">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 100%"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
 
                     <div class="col-xxl-3 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between mb-4">
-                                    <div class="d-flex gap-4 align-items-center">
-                                        <div class="avatar-text avatar-lg bg-gray-200">
-                                            <i class="feather-briefcase"></i>
-                                        </div>
-                                        <div>
-                                            <div class="fs-4 fw-bold text-dark">
-                                                <span class="counter">{{ $totalProducts ?? 0 }}</span>
+                        <a href="{{ route(App\Constants\RouteNames::ADMIN_PRODUCT_LIST) }}">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start justify-content-between mb-4">
+                                        <div class="d-flex gap-4 align-items-center">
+                                            <div class="avatar-text avatar-lg bg-gray-200">
+                                                <i class="feather-briefcase"></i>
                                             </div>
-                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Products</h3>
+                                            <div>
+                                                <div class="fs-4 fw-bold text-dark">
+                                                    <span class="">{{ $totalProducts ?? 0 }}</span>
+                                                </div>
+                                                <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Products</h3>
+                                            </div>
                                         </div>
+                                        <a href="javascript:void(0);" class="">
+                                            <i class="feather-more-vertical"></i>
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0);" class="">
-                                        <i class="feather-more-vertical"></i>
-                                    </a>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Products Available</a>
-                                        <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">{{ $totalProducts ?? 0 }}</span>
-                                            <span class="fs-11 text-muted">(0%)</span>
+                                    <div class="pt-4">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Products Available</a>
+                                            <div class="w-100 text-end">
+                                                <span class="fs-12 text-dark">{{ $totalProducts ?? 0 }}</span>
+                                                <!-- <span class="fs-11 text-muted">(0%)</span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="progress mt-2 ht-3">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                                        <div class="progress mt-2 ht-3">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
 
                     <div class="col-xxl-3 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start justify-content-between mb-4">
-                                    <div class="d-flex gap-4 align-items-center">
-                                        <div class="avatar-text avatar-lg bg-gray-200">
-                                            <i class="feather-activity"></i>
-                                        </div>
-                                        <div>
-                                            <div class="fs-4 fw-bold text-dark">
-                                                <span class="counter">{{ $totalPaidOrders ?? 0 }}</span>
+                        <a href="{{ route(App\Constants\RouteNames::ADMIN_ORDER_LIST) }}">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start justify-content-between mb-4">
+                                        <div class="d-flex gap-4 align-items-center">
+                                            <div class="avatar-text avatar-lg bg-gray-200">
+                                                <i class="feather-activity"></i>
                                             </div>
-                                            <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Paid Orders</h3>
+                                            <div>
+                                                <div class="fs-4 fw-bold text-dark">
+                                                    <span class="">{{ $totalOrders ?? 0 }}</span>
+                                                </div>
+                                                <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Orders</h3>
+                                            </div>
                                         </div>
+                                        <a href="javascript:void(0);" class="">
+                                            <i class="feather-more-vertical"></i>
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0);" class="">
-                                        <i class="feather-more-vertical"></i>
-                                    </a>
-                                </div>
-                                <div class="pt-4">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Paid Orders</a>
-                                        <div class="w-100 text-end">
-                                            <span class="fs-12 text-dark">{{ $totalPaidOrders ?? 0 }}</span>
-                                            <span class="fs-11 text-muted">(0%)</span>
+                                    <div class="pt-4">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <a href="javascript:void(0);" class="fs-12 fw-medium text-muted text-truncate-1-line">Total Orders</a>
+                                            <div class="w-100 text-end">
+                                                <span class="fs-12 text-dark">{{ $totalOrders ?? 0 }}</span>
+                                                <!-- <span class="fs-11 text-muted">(0%)</span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="progress mt-2 ht-3">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
+                                        <div class="progress mt-2 ht-3">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     <!-- [Conversion Rate] end -->
@@ -241,7 +249,7 @@
                     <div class="col-xxl-8">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Recent Orders (Last 7 Days)</h5>
+                                <h5>{{ $startDate ? 'Orders (Filtered)' : 'Recent Orders (Last 7 Days)' }}</h5>
                             </div>
                             <div class="card-body">
                                 <div id="recent-orders-chart"></div>
@@ -253,7 +261,7 @@
                     <div class="col-xxl-4">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Monthly Sales</h5>
+                                <h5>{{ $startDate ? 'Sales (Filtered)' : 'Monthly Sales' }}</h5>
                             </div>
                             <div class="card-body">
                                 <div id="monthly-sales-chart"></div>
@@ -265,7 +273,7 @@
                     <div class="col-xxl-4">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Orders</h5>
+                                <h5>{{ $startDate ? 'Orders (Filtered)' : 'Recent Orders' }}</h5>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -282,11 +290,10 @@
                                             @forelse($orders as $order)
                                             <tr>
                                                 <td>#{{ $order->id }}</td>
-                                                <td>${{ number_format($order->total_amount ?? 0, 2) }}</td>
+                                                <td><img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="15" width="15">{{ number_format($order->total_amount ?? 0, 2) }}</td>
                                                 <td>
-                                                    <span class="badge 
-                                    {{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-warning' }}">
-                                                        {{ ucfirst($order->payment_status) }}
+                                                    <span class="badge {{ $order->order_status == 'delivered' ? 'bg-success' : ($order->order_status == 'cancelled' ? 'bg-danger' : 'bg-warning') }}">
+                                                        {{ strtoupper($order->order_status) }}
                                                     </span>
                                                 </td>
                                                 <td>{{ $order->created_at->format('d M Y') }}</td>
@@ -336,7 +343,7 @@
                                                     </div>
                                                 </td>
                                                 <td> <span class="d-block">{{ $product->category->name ?? '-' }}</span></td>
-                                                <td>{{ number_format($product->price ?? 0, 2) }} AED</td>
+                                                <td><img src="https://linen-quail-927267.hostingersite.com/assets/img/dihram.webp" height="15" width="15"> {{ number_format($product->price ?? 0, 2) }} </td>
                                                 <td>{{ $product->stock_quantity }}</td>
                                                 <td>
                                                     {{ $product->is_onsale != 0 ? 'On Sale' : 'Not In Sale' }}
@@ -444,6 +451,40 @@
                     text: 'No Sales Found'
                 }
             }).render();
+
+            // Date Range Picker Implementation
+            $(function() {
+                var start = moment().subtract(29, 'days');
+                var end = moment();
+
+                @if(isset($startDate) && isset($endDate))
+                    start = moment('{{ $startDate }}');
+                    end = moment('{{ $endDate }}');
+                @endif
+
+                function cb(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+
+                $('#reportrange').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, cb);
+
+                cb(start, end);
+
+                $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                    window.location.href = "{{ route(\App\Constants\RouteNames::DASHBOARD) }}?start_date=" + picker.startDate.format('YYYY-MM-DD') + "&end_date=" + picker.endDate.format('YYYY-MM-DD');
+                });
+            });
 
         });
     </script>

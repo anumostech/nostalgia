@@ -64,7 +64,7 @@
                                             <input type="text" class="form-control" name="name" value="{{ $product->name }}" placeholder="Product Name" required>
                                         </div>
                                         <div class="col-lg-4 mb-4">
-                                            <label class="form-label">Product Image (Leave blank to keep current)</label>
+                                            <label class="form-label">Product Image (Main)</label>
                                             <input type="file" class="form-control" name="product_image">
                                             @if($product->image)
                                                 <div class="mt-2">
@@ -72,6 +72,18 @@
                                                 </div>
                                             @endif
                                         </div>
+                                        @for($i = 1; $i <= 4; $i++)
+                                        <div class="col-lg-4 mb-4">
+                                            <label class="form-label">Extra Image {{ $i }}</label>
+                                            <input type="file" class="form-control" name="product_image_{{ $i }}">
+                                            @php $field = 'image_' . $i; @endphp
+                                            @if($product->$field)
+                                                <div class="mt-2">
+                                                    <img src="{{ asset('storage/products/'.$product->$field) }}" alt="" style="height: 50px;">
+                                                </div>
+                                            @endif
+                                        </div>
+                                        @endfor
                                         <div class="col-lg-4 mb-4">
                                             <label class="form-label">Product Price</label>
                                             <input type="text" class="form-control" name="price" value="{{ $product->price }}" placeholder="Product Price" required>

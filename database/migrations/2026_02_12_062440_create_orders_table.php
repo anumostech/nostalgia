@@ -20,11 +20,14 @@ return new class extends Migration
 
             $table->decimal('subtotal', 10, 2);
             $table->decimal('vat_total', 10, 2);
-            $table->decimal('grand_total', 10, 2);
-
+            $table->decimal('total_amount', 10, 2);
+            $table->unsignedBigInteger('billing_address_id')->index()->nullable();
+            $table->boolean('ship_to_different_address')->default(false);
+            $table->unsignedBigInteger('shipping_address_id')->index()->nullable();
+            // Order Notes
+            $table->text('order_notes')->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed'])
                 ->default('pending');
-
             $table->enum('order_status', [
                 'pending',
                 'confirmed',
@@ -35,7 +38,6 @@ return new class extends Migration
 
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();
-
             $table->timestamps();
             $table->softDeletes();
         });

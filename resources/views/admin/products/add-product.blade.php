@@ -103,9 +103,24 @@
 
                                         </div>
                                         <div class="col-lg-4 mb-4">
-                                            <label class="form-label">Product Image</label>
-                                            <input type="file" class="form-control" id="fullnameInput" name="product_image" placeholder="Product Name" required>
-
+                                            <label class="form-label">Product Image (Main)</label>
+                                            <input type="file" class="form-control" name="product_image" required>
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <label class="form-label">Extra Image 1</label>
+                                            <input type="file" class="form-control" name="product_image_1">
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <label class="form-label">Extra Image 2</label>
+                                            <input type="file" class="form-control" name="product_image_2">
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <label class="form-label">Extra Image 3</label>
+                                            <input type="file" class="form-control" name="product_image_3">
+                                        </div>
+                                        <div class="col-lg-4 mb-4">
+                                            <label class="form-label">Extra Image 4</label>
+                                            <input type="file" class="form-control" name="product_image_4">
                                         </div>
                                         <div class="col-lg-4 mb-4">
                                             <label class="form-label">Product Price</label>

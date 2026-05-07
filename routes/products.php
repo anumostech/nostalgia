@@ -4,7 +4,7 @@ use App\Constants\RouteNames;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::prefix('administrator')->middleware('auth')->group(function () {
+Route::prefix('administrator')->middleware('auth:admin')->group(function () {
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'indexAdminProduct'])->name(RouteNames::ADMIN_PRODUCT_LIST);
         Route::get('/add', [ProductController::class, 'addProduct'])->name(RouteNames::PRODUCT_ADD);
