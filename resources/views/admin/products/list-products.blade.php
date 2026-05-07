@@ -128,7 +128,7 @@
                                                                 </li>
                                                                 <li class="dropdown-divider"></li>
                                                                 <li>
-                                                                    <a class="dropdown-item" href="{{ route(\App\Constants\RouteNames::PRODUCT_DELETE, ['id' => $product->id])}}">
+                                                                    <a class="dropdown-item delete-item" href="{{ route(\App\Constants\RouteNames::PRODUCT_DELETE, ['id' => $product->id])}}">
                                                                         <i class="feather feather-trash-2 me-3"></i>
                                                                         <span>Delete</span>
                                                                     </a>

@@ -21,16 +21,29 @@
     <div class="container mb-10">
         @auth
             <div class="row">
+                <div class="col-12">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <div class="card shadow-sm mb-4">
                         <div class="card-body text-center">
                             <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('assets/img/default-avatar.jpg') }}"
-                                alt="Avatar" class="rounded-circle mb-3" width="100">
+                                alt="Avatar" class="rounded-circle mb-3" width="100" height="100" style="object-fit: cover;">
                             <h4 class="mb-0">{{ auth()->user()->name }}</h4>
                             <p class="text-muted small mb-3">Customer since {{ auth()->user()->created_at->format('M Y') }}
                             </p>
-                            <a href="{{ route(\App\Constants\RouteNames::LOGOUT) }}"
-                                class="btn btn-outline-danger btn-sm">Logout</a>
+                            <div class="d-flex flex-column gap-2">
+                                <a href="{{ route('profile.edit') }}" class="btn btn-primary btn-sm mb-2">Edit Profile</a>
+                                <a href="{{ route(\App\Constants\RouteNames::LOGOUT) }}"
+                                    class="btn btn-outline-danger btn-sm">Logout</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,8 +108,17 @@
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route(\App\Constants\RouteNames::TRACK_YOUR_ORDER, ['order_id' => $order->order_number, 'email' => auth()->user()->email]) }}" 
-                                                           class="btn btn-soft-secondary btn-xs">Track</a>
+                                                        <div class="d-flex gap-2">
+                                                            <a href="{{ route(\App\Constants\RouteNames::TRACK_YOUR_ORDER, ['order_id' => $order->order_number, 'email' => auth()->user()->email]) }}" 
+                                                               class="btn btn-soft-secondary btn-xs mr-2">Track</a>
+                                                            
+                                                            @if(in_array($order->order_status, ['pending', 'confirmed']))
+                                                                <form action="{{ route('order.cancel', $order->id) }}" method="POST" class="cancel-order-form">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn btn-soft-danger btn-xs">Cancel</button>
+                                                                </form>
+                                                            @endif
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -231,6 +253,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
             }
+        });
+    });
+
+    // Order cancellation confirmation
+    const cancelForms = document.querySelectorAll('.cancel-order-form');
+    cancelForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to cancel this order?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, cancel it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
         });
     });
 });

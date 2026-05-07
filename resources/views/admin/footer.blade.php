@@ -15,6 +15,7 @@
  <!--! END: Apps Init !-->
  <!--! BEGIN: Theme Customizer  !-->
  <script src="{{ asset('admin/assets/js/theme-customizer-init.min.js') }}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script>
      document.addEventListener('DOMContentLoaded', function() {
          // Bootstrap 5 Toasts
@@ -25,6 +26,28 @@
              }); // auto hide after 5s
              toast.show();
              return toast;
+         });
+
+         // SweetAlert Delete Confirmation
+         document.querySelectorAll('.delete-item').forEach(button => {
+             button.addEventListener('click', function(e) {
+                 e.preventDefault();
+                 const url = this.getAttribute('href');
+                 
+                 Swal.fire({
+                     title: 'Are you sure?',
+                     text: "You won't be able to revert this!",
+                     icon: 'warning',
+                     showCancelButton: true,
+                     confirmButtonColor: '#3085d6',
+                     cancelButtonColor: '#d33',
+                     confirmButtonText: 'Yes, delete it!'
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         window.location.href = url;
+                     }
+                 });
+             });
          });
      });
  </script>

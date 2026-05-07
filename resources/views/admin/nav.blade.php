@@ -50,6 +50,16 @@
                     </li>
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-users"></i></span>
+                            <span class="nxl-mtext">Customers</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::CUSTOMER_LIST) }}">List Customers</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route(\App\Constants\RouteNames::CUSTOMER_ADD) }}">Add Customer</a></li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-settings"></i></span>
                             <span class="nxl-mtext">Settings</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
