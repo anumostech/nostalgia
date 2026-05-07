@@ -326,7 +326,7 @@
                                                 <th>Quantity</th>
                                                 <th>Sale</th>
                                                 <th>Status</th>
-                                                <th class="text-end">Actions</th>
+                                                <!-- <th class="text-end">Actions</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -353,9 +353,9 @@
                                                         {{ $product->status == 1 ? 'Available' : 'Not Available' }}
                                                     </span>
                                                 </td>
-                                                <td class="text-end">
+                                                <!-- <td class="text-end">
                                                     <a href="javascript:void(0);"><i class="feather-more-vertical"></i></a>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                             @empty
                                             <tr>

@@ -146,4 +146,36 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Order status updated successfully!');
     }
+
+    public function editOrder($id)
+    {
+        $order = Order::with(['items.product', 'billingAddress', 'shippingAddress', 'user'])->findOrFail($id);
+        return view('admin.orders.edit', compact('order'));
+    }
+
+    public function updateOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        
+        $request->validate([
+            'order_status' => 'required|in:pending,confirmed,shipped,delivered,cancelled',
+            'payment_status' => 'required|in:pending,paid,failed',
+            'order_notes' => 'nullable|string',
+        ]);
+
+        $order->update([
+            'order_status' => $request->order_status,
+            'payment_status' => $request->payment_status,
+            'order_notes' => $request->order_notes,
+        ]);
+
+        return redirect()->route(\App\Constants\RouteNames::ADMIN_ORDER_LIST)->with('success', 'Order updated successfully!');
+    }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->route(\App\Constants\RouteNames::ADMIN_ORDER_LIST)->with('success', 'Order deleted successfully!');
+    }
 }

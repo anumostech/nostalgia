@@ -114,6 +114,9 @@
                                             class="u-header-topbar__nav-link">
                                             <i class="ec ec-user mr-1"></i> {{ auth()->user()->name }}
                                         </a>
+                                        <a href="{{ route('profile.edit') }}" class="u-header-topbar__nav-link ml-2">
+                                            <i class="fas fa-user-edit mr-1"></i> Edit Profile
+                                        </a>
                                         <a href="{{ route(\App\Constants\RouteNames::LOGOUT) }}"
                                             class="u-header-topbar__nav-link ml-2">
                                             <i class="fas fa-sign-out-alt mr-1"></i> Logout
