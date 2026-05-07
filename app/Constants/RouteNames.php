@@ -8,8 +8,24 @@ class RouteNames
     public const LOGOUT = 'logout';
     public const DASHBOARD = 'administrator.dashboard';
 
-    // Auth
+    // Admin Auth
+    public const ADMIN_LOGIN = 'administrator.login';
+    public const ADMIN_LOGOUT = 'administrator.logout';
+    public const ADMIN_AUTH_LOGIN_POST = 'administrator.login.post';
+    public const ADMIN_FORGOT_PASSWORD = 'administrator.password.forgot';
+    public const ADMIN_FORGOT_PASSWORD_POST = 'administrator.password.forgot.post';
+    public const ADMIN_RESET_PASSWORD = 'administrator.password.reset';
+    public const ADMIN_RESET_PASSWORD_POST = 'administrator.password.reset.post';
+
+    // Auth (Website)
     public const AUTH_LOGIN_POST = 'login.post';
+    public const REGISTER = 'register';
+    public const REGISTER_POST = 'register.post';
+    public const OTP_VERIFY = 'otp.verify';
+    public const OTP_VERIFY_POST = 'otp.verify.post';
+    public const OTP_RESEND = 'otp.resend';
+    public const OTP_LOGIN = 'otp.login';
+    public const OTP_LOGIN_POST = 'otp.login.post';
     public const FORGOT_PASSWORD = 'password.forgot';
     public const FORGOT_PASSWORD_POST = 'password.forgot.post';
     public const RESET_PASSWORD = 'password.reset';
@@ -82,6 +98,7 @@ class RouteNames
     public const ORDER_EDIT   = 'account.orders.edit';
     public const ORDER_UPDATE = 'account.orders.update';
     public const ORDER_DELETE = 'account.orders.delete';
+    public const ORDER_SUCCESS = 'account.orders.success';
 
     // Order Items
     public const ORDER_ITEM_ADD    = 'account.orders.items.add';
@@ -110,5 +127,15 @@ class RouteNames
     public const TERMS_AND_CONDITIONS = 'website.terms-and-conditions';
     public const TRACK_YOUR_ORDER = 'website.track-your-order';
     public const WISHLIST = 'website.wishlist';
+    public const CART_ADD = 'website.cart.add';
+    public const CART_UPDATE = 'website.cart.update';
+    public const CART_REMOVE = 'website.cart.remove';
+    public const CART_CLEAR = 'website.cart.clear';
+    public const CART_THRESHOLD_ADD = 'cart.threshold.add';
+    public const CART_THRESHOLD_STORE = 'cart.threshold.store';
+    public const CHECKOUT_PROCESS = 'website.checkout.process';
+    public const ADMIN_ORDER_LIST = 'administrator.orders';
+    public const ADMIN_ORDER_SHOW = 'administrator.orders.show';
+    public const ADMIN_ORDER_UPDATE_STATUS = 'administrator.orders.update-status';
 
 }

@@ -4,7 +4,7 @@ use App\Constants\RouteNames;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 
-Route::prefix('administrator')->middleware('auth')->group(function () {
+Route::prefix('administrator')->middleware('auth:admin')->group(function () {
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'indexAdminCategory'])->name(RouteNames::ADMIN_CATEGORY_LIST);

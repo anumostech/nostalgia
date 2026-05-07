@@ -24,64 +24,50 @@
             <div class="row align-items-center">
                 <div class="col-md-5 mb-4 mb-md-0 text-center">
                     <div>
-                    <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
-                        data-infinite="true"
-                        data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
-                        data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
-                        data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
-                        data-nav-for="#sliderSyncingThumb">
+                        <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
+                            data-infinite="true"
+                            data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
+                            data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
+                            data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
+                            data-nav-for="#sliderSyncingThumb">
 
-                        <div class="js-slide d-flex justify-content-center align-items-center">
+                            <div class="js-slide d-flex justify-content-center align-items-center">
                                 <img class="img-fluid"
                                     src="{{ asset('storage/products/'.$product->image) }}"
                                     alt="{{ $product->name }}">
+                            </div>
+                            @for($i = 1; $i <= 4; $i++)
+                                @php $field = 'image_' . $i; @endphp
+                                <div class="js-slide d-flex justify-content-center align-items-center">
+                                    <img class="img-fluid"
+                                        src="{{ $product->$field ? asset('storage/products/'.$product->$field) : asset('storage/products/'.$product->image) }}"
+                                        alt="{{ $product->name }}">
+                                </div>
+                            @endfor
+
                         </div>
-                        <div class="js-slide d-flex justify-content-center align-items-center">
+
+                        <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
+                            data-infinite="true"
+                            data-slides-show="5"
+                            data-is-thumbs="true"
+                            data-nav-for="#sliderSyncingNav">
+
+                            <div class="js-slide" style="cursor: pointer;">
                                 <img class="img-fluid"
                                     src="{{ asset('storage/products/'.$product->image) }}"
                                     alt="{{ $product->name }}">
-                        </div>
-                        <div class="js-slide d-flex justify-content-center align-items-center">
-                                <img class="img-fluid"
-                                    src="{{ asset('storage/products/'.$product->image) }}"
-                                    alt="{{ $product->name }}">
-                        </div>
-                        <div class="js-slide d-flex justify-content-center align-items-center">
-                                <img class="img-fluid"
-                                    src="{{ asset('storage/products/'.$product->image) }}"
-                                    alt="{{ $product->name }}">
-                        </div>
+                            </div>
+                            @for($i = 1; $i <= 4; $i++)
+                                @php $field = 'image_' . $i; @endphp
+                                <div class="js-slide" style="cursor: pointer;">
+                                    <img class="img-fluid"
+                                        src="{{ $product->$field ? asset('storage/products/'.$product->$field) : asset('storage/products/'.$product->image) }}"
+                                        alt="{{ $product->name }}">
+                                </div>
+                            @endfor
 
-                    </div>
-
-                    <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
-                        data-infinite="true"
-                        data-slides-show="5"
-                        data-is-thumbs="true"
-                        data-nav-for="#sliderSyncingNav">
-
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid"
-                                src="{{ asset('storage/products/'.$product->image) }}"
-                                alt="{{ $product->name }}">
                         </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid"
-                                src="{{ asset('storage/products/'.$product->image) }}"
-                                alt="{{ $product->name }}">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid"
-                                src="{{ asset('storage/products/'.$product->image) }}"
-                                alt="{{ $product->name }}">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid"
-                                src="{{ asset('storage/products/'.$product->image) }}"
-                                alt="{{ $product->name }}">
-                        </div>
-
-                    </div>
                     </div>
                 </div>
 
@@ -123,11 +109,11 @@
 
                         </div>
 
-                        <div class="flex-horizontal-center flex-wrap mb-4">
+                        <!-- <div class="flex-horizontal-center flex-wrap mb-4">
                             <a href="#" class="text-gray-6 font-size-13 mr-2">
                                 <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
                             </a>
-                        </div>
+                        </div> -->
 
                         <p>{{ $product->description }}</p>
 
@@ -137,50 +123,74 @@
                             <div class="d-flex align-items-baseline">
 
                                 <ins class="font-size-36 text-decoration-none">
-                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="30" width="30"/>{{ number_format($product->price, 2) }}</div>
+                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="30" width="30" />{{ number_format($product->price, 2) }}</div>
                                 </ins>
 
                                 @if($product->old_price)
                                 <del class="font-size-20 ml-2 text-gray-6">
-                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/>{{ number_format($product->old_price, 2) }}</div>
+                                    <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->old_price, 2) }}</div>
                                 </del>
                                 @endif
 
                             </div>
                         </div>
 
-                        {{-- Quantity + Add to Cart --}}
-                        <div class="d-md-flex align-items-end mb-3">
-                            <div class="max-width-150 mb-4 mb-md-0">
-                                <h6 class="font-size-14">Quantity</h6>
-
-                                <div class="border rounded-pill py-2 px-3 border-color-1">
-                                    <div class="js-quantity row align-items-center">
-                                        <div class="col">
-                                            <input name="quantity"
-                                                class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
-                                                type="text"
-                                                value="1">
-                                        </div>
-                                        <div class="col-auto pr-1">
-                                            <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                <small class="fas fa-minus btn-icon__inner"></small>
-                                            </a>
-                                            <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                <small class="fas fa-plus btn-icon__inner"></small>
-                                            </a>
-                                        </div>
+                        <div class="d-xl-block prodcut-add-cart" id="cart-control-{{ $product->id }}">
+                            @if(isset($cartItemQuantities[$product->id]))
+                            <div class="d-md-flex align-items-center mb-3">
+                                <div class="max-width-150 mb-4 mb-md-0 main-product">
+                                    <h6 class="font-size-14">Quantity in Cart</h6>
+                                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill py-2 px-3">
+                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                            <i class="fa {{ $cartItemQuantities[$product->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-12"></i>
+                                        </button>
+                                        <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$product->id]->id }}">{{ $cartItemQuantities[$product->id]->quantity }}</span>
+                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                            <i class="fa fa-plus font-size-12"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="ml-md-3">
+                                    <span class="text-success font-weight-bold"><i class="fas fa-check-circle mr-1"></i> Already in Cart</span>
+                                </div>
                             </div>
-
-                            <div class="ml-md-3">
-                                <a href="{{ route(\App\Constants\RouteNames::CART) }}"
-                                    class="btn px-5 btn-primary-dark transition-3d-hover">
-                                    <i class="ec ec-add-to-cart mr-2 font-size-20"></i>
-                                    Add to Cart
-                                </a>
-                            </div>
+                            @else
+                            <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $product->id }}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <div class="d-md-flex align-items-end mb-3">
+                                    <div class="max-width-150 mb-4 mb-md-0 main-product">
+                                        <h6 class="font-size-12">Quantity</h6>
+                                        <div class="border rounded-pill py-2 px-3 border-color-1">
+                                            <div class="js-quantity row align-items-center">
+                                                <div class="col-auto">
+                                                    <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <small class="fas fa-minus btn-icon__inner"></small>
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <input name="quantity"
+                                                        class="js-result form-control h-auto border-0 rounded p-0 shadow-none"
+                                                        type="text"
+                                                        value="1">
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <small class="fas fa-plus btn-icon__inner"></small>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ml-md-3">
+                                        <button type="submit" class="btn px-5 btn-primary-dark transition-3d-hover">
+                                            <i class="ec ec-add-to-cart mr-2 font-size-20"></i>
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            @endif
                         </div>
 
                     </div>
@@ -498,28 +508,43 @@
                                 <div class="flex-center-between mb-1">
                                     <div class="prodcut-price">
                                         <div class="text-gray-100">
-                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20"/> {{ number_format($item->price, 2) }}</div>
+                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /> {{ number_format($item->price, 2) }}</div>
                                         </div>
                                     </div>
 
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="route(RouteNames::PRODUCT_SHOW, $item->id)
-"
-                                            class="btn-add-cart btn-primary transition-3d-hover">
-                                            <i class="ec ec-add-to-cart"></i>
-                                        </a>
+                                    <div class="d-xl-block prodcut-add-cart" id="cart-control-{{ $item->id }}">
+                                        @if(isset($cartItemQuantities[$item->id]))
+                                        <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$item->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                <i class="fa {{ $cartItemQuantities[$item->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-10"></i>
+                                            </button>
+                                            <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$item->id]->id }}">{{ $cartItemQuantities[$item->id]->quantity }}</span>
+                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$item->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                <i class="fa fa-plus font-size-10"></i>
+                                            </button>
+                                        </div>
+                                        @else
+                                        <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $item->id }}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn-add-cart btn-primary transition-3d-hover">
+                                                <i class="ec ec-add-to-cart"></i>
+                                            </button>
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div class="product-item__footer">
+                            <!-- <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="#" class="text-gray-6 font-size-13">
                                         <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -534,3 +559,8 @@
 </main>
 <!-- ========== END MAIN CONTENT ========== -->
 @include('footer')
+</body>
+
+<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/home-v3.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 11:04:04 GMT -->
+
+</html>
