@@ -30,7 +30,7 @@
 
                                     <div class="prodcut-price mt-auto">
                                         <div class="font-size-15">
-                                            AED {{ number_format($product->price, 2) }}
+                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /> {{ number_format($product->price, 2) }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-wd-3 col-lg-4">
                     <div class="border-bottom border-color-1 mb-5">
-                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Onsale Products</h3>
+                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">On Sale Products</h3>
                     </div>
                     <ul class="list-unstyled products-group">
                         @foreach($onSaleProducts as $product)
@@ -65,7 +65,7 @@
 
                                 <div class="prodcut-price mt-auto">
                                     <div class="font-size-15">
-                                        AED {{ number_format($product->price, 2) }}
+                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /> {{ number_format($product->price, 2) }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
 
                                 <div class="prodcut-price mt-auto">
                                     <div class="font-size-15">
-                                        AED {{ number_format($product->price, 2) }}
+                                        <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" /> {{ number_format($product->price, 2) }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -177,8 +177,8 @@
                                 <!-- List Group -->
                                 <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
                                     <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::HOME) }}">Home</a></li>
-                                    <li><a class="list-group-item list-group-item-action" href="about.php">About Us</a></li>
-                                    <li><a class="list-group-item list-group-item-action" href="contact.php">Contact Us</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::ABOUT) }}">About Us</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::CONTACT) }}">Contact Us</a></li>
                                 </ul>
                                 <!-- End List Group -->
                             </div>
@@ -186,9 +186,9 @@
                             <div class="col-12 col-md mb-4 mb-md-0 d-flex align-items-center">
                                 <!-- List Group -->
                                 <ul class="list-group list-group-flush list-group-borderless mb-0 list-group-transparent">
-                                    <li><a class="list-group-item list-group-item-action" href="privacy.php">Privacy</a></li>
-                                    <li><a class="list-group-item list-group-item-action" href="faq.php">FAQ</a></li>
-                                    <li><a class="list-group-item list-group-item-action" href="terms-and-conditions.php">Terms Of Use</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::PRIVACY) }}">Privacy</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::FAQ) }}">FAQ</a></li>
+                                    <li><a class="list-group-item list-group-item-action" href="{{ route(\App\Constants\RouteNames::TERMS_AND_CONDITIONS ) }}">Terms Of Use</a></li>
                                 </ul>
                                 <!-- End List Group -->
                             </div>
@@ -209,20 +209,11 @@
                                                 </a>
                                             </li>
                                             <li class="list-inline-item mr-0">
-                                                <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                                    <span class="fab fa-google btn-icon__inner"></span>
+                                                <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="http://instagram.com/nostalgiasweets.ae">
+                                                    <span class="fab fa-instagram btn-icon__inner"></span>
                                                 </a>
                                             </li>
-                                            <li class="list-inline-item mr-0">
-                                                <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                                    <span class="fab fa-twitter btn-icon__inner"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-0">
-                                                <a class="btn font-size-20 btn-icon btn-soft-dark btn-bg-transparent rounded-circle" href="#">
-                                                    <span class="fab fa-github btn-icon__inner"></span>
-                                                </a>
-                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -264,270 +255,6 @@
     </footer>
     <!-- ========== END FOOTER ========== -->
 
-    <!-- ========== SECONDARY CONTENTS ========== -->
-    <!-- Account Sidebar Navigation -->
-    <aside id="sidebarContent" class="u-sidebar u-sidebar__lg" aria-labelledby="sidebarNavToggler">
-        <div class="u-sidebar__scroller">
-            <div class="u-sidebar__container">
-                <div class="js-scrollbar u-header-sidebar__footer-offset pb-3">
-                    <!-- Toggle Button -->
-                    <div class="d-flex align-items-center pt-4 px-7">
-                        <button type="button" class="close ml-auto"
-                            aria-controls="sidebarContent"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-unfold-event="click"
-                            data-unfold-hide-on-scroll="false"
-                            data-unfold-target="#sidebarContent"
-                            data-unfold-type="css-animation"
-                            data-unfold-animation-in="fadeInRight"
-                            data-unfold-animation-out="fadeOutRight"
-                            data-unfold-duration="500">
-                            <i class="ec ec-close-remove"></i>
-                        </button>
-                    </div>
-                    <!-- End Toggle Button -->
-
-                    <!-- Content -->
-                    <div class="js-scrollbar u-sidebar__body">
-                        <div class="u-sidebar__content u-header-sidebar__content">
-                            <form class="js-validate">
-                                <!-- Login -->
-                                <div id="login" data-target-group="idForm">
-                                    <!-- Title -->
-                                    <header class="text-center mb-7">
-                                        <h2 class="h4 mb-0">Welcome Back!</h2>
-                                        <p>Login to manage your account.</p>
-                                    </header>
-                                    <!-- End Title -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signinEmail">Email</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="signinEmailLabel">
-                                                        <span class="fas fa-user"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="email" class="form-control" name="email" id="signinEmail" placeholder="Email" aria-label="Email" aria-describedby="signinEmailLabel" required
-                                                    data-msg="Please enter a valid email address."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Form Group -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signinPassword">Password</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="signinPasswordLabel">
-                                                        <span class="fas fa-lock"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="password" class="form-control" name="password" id="signinPassword" placeholder="Password" aria-label="Password" aria-describedby="signinPasswordLabel" required
-                                                    data-msg="Your password is invalid. Please try again."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Form Group -->
-
-                                    <div class="d-flex justify-content-end mb-4">
-                                        <a class="js-animation-link small link-muted" href="javascript:;"
-                                            data-target="#forgotPassword"
-                                            data-link-group="idForm"
-                                            data-animation-in="slideInUp">Forgot Password?</a>
-                                    </div>
-
-                                    <div class="mb-2">
-                                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
-                                    </div>
-
-                                    <div class="text-center mb-4">
-                                        <span class="small text-muted">Do not have an account?</span>
-                                        <a class="js-animation-link small text-dark" href="javascript:;"
-                                            data-target="#signup"
-                                            data-link-group="idForm"
-                                            data-animation-in="slideInUp">Signup
-                                        </a>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                                    </div>
-
-                                    <!-- Login Buttons -->
-                                    <div class="d-flex">
-                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                                            <span class="fab fa-facebook-square mr-1"></span>
-                                            Facebook
-                                        </a>
-                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                                            <span class="fab fa-google mr-1"></span>
-                                            Google
-                                        </a>
-                                    </div>
-                                    <!-- End Login Buttons -->
-                                </div>
-
-                                <!-- Signup -->
-                                <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
-                                    <!-- Title -->
-                                    <header class="text-center mb-7">
-                                        <h2 class="h4 mb-0">Welcome to Electro.</h2>
-                                        <p>Fill out the form to get started.</p>
-                                    </header>
-                                    <!-- End Title -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signupEmail">Email</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="signupEmailLabel">
-                                                        <span class="fas fa-user"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="email" class="form-control" name="email" id="signupEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmailLabel" required
-                                                    data-msg="Please enter a valid email address."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Input -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signupPassword">Password</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="signupPasswordLabel">
-                                                        <span class="fas fa-lock"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="password" class="form-control" name="password" id="signupPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPasswordLabel" required
-                                                    data-msg="Your password is invalid. Please try again."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Input -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="signupConfirmPassword">Confirm Password</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="signupConfirmPasswordLabel">
-                                                        <span class="fas fa-key"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="password" class="form-control" name="confirmPassword" id="signupConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupConfirmPasswordLabel" required
-                                                    data-msg="Password does not match the confirm password."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Input -->
-
-                                    <div class="mb-2">
-                                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Get Started</button>
-                                    </div>
-
-                                    <div class="text-center mb-4">
-                                        <span class="small text-muted">Already have an account?</span>
-                                        <a class="js-animation-link small text-dark" href="javascript:;"
-                                            data-target="#login"
-                                            data-link-group="idForm"
-                                            data-animation-in="slideInUp">Login
-                                        </a>
-                                    </div>
-
-                                    <div class="text-center">
-                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
-                                    </div>
-
-                                    <!-- Login Buttons -->
-                                    <div class="d-flex">
-                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
-                                            <span class="fab fa-facebook-square mr-1"></span>
-                                            Facebook
-                                        </a>
-                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
-                                            <span class="fab fa-google mr-1"></span>
-                                            Google
-                                        </a>
-                                    </div>
-                                    <!-- End Login Buttons -->
-                                </div>
-                                <!-- End Signup -->
-
-                                <!-- Forgot Password -->
-                                <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
-                                    <!-- Title -->
-                                    <header class="text-center mb-7">
-                                        <h2 class="h4 mb-0">Recover Password.</h2>
-                                        <p>Enter your email address and an email with instructions will be sent to you.</p>
-                                    </header>
-                                    <!-- End Title -->
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="js-form-message js-focus-state">
-                                            <label class="sr-only" for="recoverEmail">Your email</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="recoverEmailLabel">
-                                                        <span class="fas fa-user"></span>
-                                                    </span>
-                                                </div>
-                                                <input type="email" class="form-control" name="email" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
-                                                    data-msg="Please enter a valid email address."
-                                                    data-error-class="u-has-error"
-                                                    data-success-class="u-has-success">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Form Group -->
-
-                                    <div class="mb-2">
-                                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
-                                    </div>
-
-                                    <div class="text-center mb-4">
-                                        <span class="small text-muted">Remember your password?</span>
-                                        <a class="js-animation-link small" href="javascript:;"
-                                            data-target="#login"
-                                            data-link-group="idForm"
-                                            data-animation-in="slideInUp">Login
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Forgot Password -->
-                            </form>
-                        </div>
-                    </div>
-                    <!-- End Content -->
-                </div>
-            </div>
-        </div>
-    </aside>
-    <!-- End Account Sidebar Navigation -->
-    <!-- ========== END SECONDARY CONTENTS ========== -->
-
     <!-- Go to Top -->
     <a class="js-go-to u-go-to" href="#"
         data-position='{"bottom": 15, "right": 15 }'
@@ -546,6 +273,7 @@
     <script src="{{ asset('assets/vendor/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
 
+
     <!-- JS Implementing Plugins -->
     <script src="{{ asset('assets/vendor/appear.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery.countdown.min.js') }}"></script>
@@ -554,6 +282,7 @@
     <script src="{{ asset('assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/fancybox/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/typed.js/lib/typed.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/slick-carousel/slick/slick.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
@@ -570,10 +299,13 @@
     <script src="{{ asset('assets/js/components/hs.fancybox.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.onscroll-animation.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.slick-carousel.js') }}"></script>
+    <script src="{{ asset('assets/js/components/hs.range-slider.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.show-animation.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.svg-injector.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.go-to.js') }}"></script>
     <script src="{{ asset('assets/js/components/hs.selectpicker.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- JS Plugins Init. -->
     <script>
@@ -639,6 +371,9 @@
             // initialization of slick carousel
             $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
 
+            // initialization of forms
+            $.HSCore.components.HSRangeSlider.init('.js-range-slider');
+
             // initialization of go to
             $.HSCore.components.HSGoTo.init('.js-go-to');
 
@@ -667,15 +402,445 @@
                 }
             });
 
-            // initialization of unfold component
-            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'));
-
             // initialization of select picker
             $.HSCore.components.HSSelectPicker.init('.js-select');
         });
+
+        // Global Cart AJAX Handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to sync all cart-related UIs
+            function syncAllCartUIs(data) {
+                // Update Sidebar/Navbar Cart Count
+                const countElements = document.querySelectorAll('#cart-count');
+                countElements.forEach(el => {
+                    el.innerText = data.cart_count;
+                });
+
+                // Update all quantity displays and buttons across the page
+                // First, reset all "Add to Cart" buttons if they are not in the cart data
+                const allCartControls = document.querySelectorAll('.prodcut-add-cart');
+                allCartControls.forEach(container => {
+                    const productId = container.id.replace('cart-control-', '');
+                    const itemInCart = data.cart_items.find(item => item.product_id == productId);
+
+                    if (itemInCart) {
+                        updateCartControlUI(productId, itemInCart.id, itemInCart.quantity);
+                    } else {
+                        resetToAddToCartButton(container, productId);
+                    }
+                });
+
+                // If we are on the cart page, update rows and totals
+                if (window.location.pathname.includes('/cart')) {
+                    updateCartPageRowsAndTotals(data);
+                }
+            }
+
+            function resetToAddToCartButton(container, productId) {
+                // Check if it's the main product page style or listing style
+                const isMainProduct = container.querySelector('.main-product') !== null || container.closest('.product-details') !== null;
+
+                if (container.querySelector('form.add-to-cart-form')) return; // Already a form
+
+                if (isMainProduct && container.querySelector('.main-product')) {
+                    // This is the main product page style
+                    container.innerHTML = `
+                        <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="${productId}">
+                            @csrf
+                            <input type="hidden" name="product_id" value="${productId}">
+                            <div class="d-md-flex align-items-end mb-3">
+                                <div class="max-width-150 mb-4 mb-md-0 main-product">
+                                    <h6 class="font-size-12">Quantity</h6>
+                                    <!-- Quantity -->
+                                    <div class="border rounded-pill py-2 px-3 border-color-1">
+                                        <div class="js-quantity row align-items-center">
+                                            <div class="col-auto">
+                                                <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                    <small class="fas fa-minus btn-icon__inner"></small>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" name="quantity" value="1">
+                                            </div>
+                                            <div class="col-auto">
+                                                <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                    <small class="fas fa-plus btn-icon__inner"></small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- End Quantity -->
+                                </div>
+                                <div class="ml-md-3">
+                                    <button type="submit" class="btn btn-primary-dark-w px-5"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</button>
+                                </div>
+                            </div>
+                        </form>
+                    `;
+                } else if (container.querySelector('.btn-add-cart__wide')) {
+                    // Bestsellers/Featured wide button style
+                    container.innerHTML = `
+                        <form action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" class="add-to-cart-form" data-product-id="${productId}">
+                            @csrf
+                            <input type="hidden" name="product_id" value="${productId}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn-add-cart btn-add-cart__wide btn-primary transition-3d-hover">
+                                <i class="ec ec-add-to-cart mr-2"></i> Add to Cart
+                            </button>
+                        </form>
+                     `;
+                } else {
+                    // Regular listing style
+                    container.innerHTML = `
+                        <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="${productId}">
+                            @csrf
+                            <input type="hidden" name="product_id" value="${productId}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn-add-cart btn-primary transition-3d-hover">
+                                <i class="ec ec-add-to-cart"></i>
+                            </button>
+                        </form>
+                    `;
+                }
+            }
+
+            function updateCartControlUI(productId, cartItemId, quantity) {
+                const containers = document.querySelectorAll('#cart-control-' + productId);
+                containers.forEach(container => {
+                    const isMainProduct = container.querySelector('.main-product') !== null || container.innerHTML.includes('Quantity');
+                    const leftIconClass = quantity === 1 ? 'fa-trash' : 'fa-minus';
+
+                    if (isMainProduct) {
+                        container.innerHTML = `
+                            <div class="d-md-flex align-items-center mb-3">
+                                <div class="max-width-150 mb-4 mb-md-0 main-product">
+                                    <h6 class="font-size-12">Quantity in Cart</h6>
+                                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill py-2 px-3">
+                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="${cartItemId}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                            <i class="fa ${leftIconClass} font-size-12"></i>
+                                        </button>
+                                        <span class="mx-4 font-weight-bold text-white qty-display-${cartItemId}">${quantity}</span>
+                                        <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="${cartItemId}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                            <i class="fa fa-plus font-size-12"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="ml-md-3">
+                                    <span class="text-success font-weight-bold"><i class="fas fa-check-circle mr-1"></i> Already in Cart</span>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = `
+                            <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="${cartItemId}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                    <i class="fa ${leftIconClass} font-size-10"></i>
+                                </button>
+                                <span class="mx-2 font-weight-bold text-white qty-display-${cartItemId}">${quantity}</span>
+                                <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="${cartItemId}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                    <i class="fa fa-plus font-size-10"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            function updateCartPageRowsAndTotals(data) {
+                const tbody = document.querySelector('.cart-table tbody');
+                if (!tbody) return;
+
+                // Update Row totals and check if any rows need to be removed
+                const existingRows = tbody.querySelectorAll('tr[data-cart-item-id]');
+                existingRows.forEach(row => {
+                    const cartItemId = row.getAttribute('data-cart-item-id');
+                    const item = data.cart_items.find(i => i.id == cartItemId);
+
+                    if (item) {
+                        const totalEl = row.querySelector(`.item-total-${cartItemId}`);
+                        if (totalEl) totalEl.innerText = item.total.toLocaleString(undefined, {
+                            minimumFractionDigits: 2
+                        });
+                        const qtyInput = row.querySelector('.qty-display-' + cartItemId);
+                        if (qtyInput) qtyInput.innerText = item.quantity;
+
+                        // Update icons (trash vs minus)
+                        const decBtn = row.querySelector('.update-cart-qty[data-action="decrement"]');
+                        if (decBtn) {
+                            const icon = decBtn.querySelector('i, small');
+                            if (icon) {
+                                if (item.quantity === 1) {
+                                    icon.classList.remove('fa-minus');
+                                    icon.classList.add('fa-trash');
+                                } else {
+                                    icon.classList.remove('fa-trash');
+                                    icon.classList.add('fa-minus');
+                                }
+                            }
+                        }
+                    } else {
+                        row.remove();
+                    }
+                });
+
+                // If cart is empty, show empty message
+                if (data.cart_items.length === 0) {
+                    const cartTable = document.querySelector('.cart-table');
+                    cartTable.innerHTML = `
+                        <div class="text-center py-5">
+                            <img src="{{ asset('assets/img/cart-empty.png') }}" alt="Empty Cart" style="width:130px;height:100px;"/>
+                            <h3>Your cart is empty</h3>
+                            <a href="{{ route(\App\Constants\RouteNames::PRODUCT_LIST) }}" class="btn btn-primary-dark-w mt-4">Go to Shop</a>
+                        </div>
+                    `;
+                    const cartTotalSection = document.querySelector('.cart-total');
+                    if (cartTotalSection) cartTotalSection.remove();
+                    return;
+                }
+
+                // Update Grand Totals
+                if (document.getElementById('subtotal-display'))
+                    document.getElementById('subtotal-display').innerText = data.subtotal.toLocaleString(undefined, {
+                        minimumFractionDigits: 2
+                    });
+                if (document.getElementById('vat-display'))
+                    document.getElementById('vat-display').innerText = data.vat.toLocaleString(undefined, {
+                        minimumFractionDigits: 2
+                    });
+                if (document.getElementById('total-display'))
+                    document.getElementById('total-display').innerText = data.total.toLocaleString(undefined, {
+                        minimumFractionDigits: 2
+                    });
+
+                // Update checkout buttons based on threshold
+                const checkoutContainers = document.querySelectorAll('#checkout-buttons-container, .cart-total');
+                checkoutContainers.forEach(container => {
+                    const proceedBtns = container.querySelectorAll('a[href*="checkout"], button.btn-secondary');
+                    proceedBtns.forEach(btn => {
+                        if (data.can_checkout) {
+                            if (btn.tagName === 'BUTTON') {
+                                const newBtn = document.createElement('a');
+                                newBtn.href = "{{ route(\App\Constants\RouteNames::CHECKOUT) }}";
+                                newBtn.className = btn.className.replace('btn-secondary', 'btn-primary-dark-w');
+                                newBtn.innerText = btn.innerText;
+                                btn.parentNode.replaceChild(newBtn, btn);
+                            }
+                        } else {
+                            if (btn.tagName === 'A') {
+                                const newBtn = document.createElement('button');
+                                newBtn.type = "button";
+                                newBtn.className = btn.className.replace('btn-primary-dark-w', 'btn-secondary');
+                                newBtn.disabled = true;
+                                newBtn.innerText = btn.innerText;
+                                btn.parentNode.replaceChild(newBtn, btn);
+                            }
+                        }
+                    });
+                });
+
+                // Update threshold alert if it exists, or create it if missing and subtotal < threshold
+                let thresholdAlert = document.querySelector('.alert-warning');
+                if (!data.can_checkout) {
+                    if (!thresholdAlert) {
+                        // Create alert if it doesn't exist
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-warning d-flex align-items-center mb-4';
+                        alertDiv.style.color = '#000';
+                        alertDiv.setAttribute('role', 'alert');
+                        alertDiv.innerHTML = `
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <div class="d-flex align-items-center">Your cart total is <div class="d-flex align-items-center ml-1 mr-1"><img src="/assets/img/dihram.webp" height="15" width="15" /> <span>${data.subtotal.toLocaleString(undefined, {minimumFractionDigits: 2})}</span></div>. You need a minimum of <div class="d-flex align-items-center mr-1 ml-1"><img src="/assets/img/dihram.webp" height="15" width="15" /> <span><strong>${data.threshold.toLocaleString(undefined, {minimumFractionDigits: 2})} </strong></span></div>to proceed to checkout.</div>
+                        `;
+
+                        const cartTable = document.querySelector('.cart-table');
+                        if (cartTable) {
+                            // Insert before the table content wrapper or as the first child of cart-table
+                            const wrapper = document.getElementById('cart-content-wrapper');
+                            if (wrapper) {
+                                wrapper.parentNode.insertBefore(alertDiv, wrapper);
+                            } else {
+                                cartTable.prepend(alertDiv);
+                            }
+                        }
+                    } else {
+                        // Update existing alert
+                        const alertSpan = thresholdAlert.querySelector('span'); // First span is subtotal
+                        if (alertSpan) alertSpan.innerText = data.subtotal.toLocaleString(undefined, {
+                            minimumFractionDigits: 2
+                        });
+                    }
+                } else if (thresholdAlert) {
+                    // Remove alert if subtotal >= threshold
+                    thresholdAlert.remove();
+                }
+            }
+
+            // Subscriptions/Events
+            document.addEventListener('submit', function(e) {
+                if (e.target.classList.contains('add-to-cart-form')) {
+                    e.preventDefault();
+                    const form = e.target;
+                    const formData = new FormData(form);
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnContent = submitBtn ? submitBtn.innerHTML : null;
+
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                    }
+
+                    axios.post(form.action || '{{ route(\App\Constants\RouteNames::CART_ADD) }}', formData)
+                        .then(response => {
+                            if (response.data.success) {
+                                syncAllCartUIs(response.data);
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    icon: 'success',
+                                    title: response.data.message || 'Added to cart'
+                                });
+                            } else {
+                                throw new Error(response.data.message || 'Failed to add to cart');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error adding to cart:', error);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: (error.response && error.response.data && error.response.data.message) ? error.response.data.message : (error.message || 'Something went wrong!')
+                            });
+                        })
+                        .finally(() => {
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.innerHTML = originalBtnContent;
+                            }
+                        });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.update-cart-qty');
+                if (btn) {
+                    e.preventDefault();
+                    const cartItemId = btn.getAttribute('data-cart-item-id');
+                    const action = btn.getAttribute('data-action');
+                    const displayElements = document.querySelectorAll('.qty-display-' + cartItemId);
+
+                    if (!displayElements.length) return;
+
+                    let currentQty = parseInt(displayElements[0].innerText);
+
+                    if (action === 'decrement' && currentQty === 1) {
+                        // Trash icon clicked -> Remove item
+                        const originalContent = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin font-size-10"></i>';
+
+                        axios.get('{{ url("cart/remove") }}/' + cartItemId, {
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data.success) {
+                                    syncAllCartUIs(response.data);
+                                } else {
+                                    throw new Error(response.data.message || 'Remove failed');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error removing from cart:', error);
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Failed to remove item'
+                                });
+                                btn.disabled = false;
+                                btn.innerHTML = originalContent;
+                            });
+                        return;
+                    }
+
+                    let newQty = action === 'increment' ? currentQty + 1 : currentQty - 1;
+                    if (newQty < 1) return;
+
+                    const originalContent = btn.innerHTML;
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin font-size-10"></i>';
+
+                    axios.post('{{ route(\App\Constants\RouteNames::CART_UPDATE) }}', {
+                            items: [{
+                                id: cartItemId,
+                                quantity: newQty
+                            }],
+                            _token: '{{ csrf_token() }}'
+                        }, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => {
+                            if (response.data.success) {
+                                syncAllCartUIs(response.data);
+                                btn.innerHTML = originalContent;
+                            } else {
+                                throw new Error(response.data.message || 'Update failed');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error updating cart quantity:', error);
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Failed to update'
+                            });
+                            btn.disabled = false;
+                            btn.innerHTML = originalContent;
+                        });
+                }
+
+                // Handle regular remove links on cart page via AJAX
+                const removeLink = e.target.closest('a[href*="/cart/remove/"]');
+                if (removeLink && window.location.pathname.includes('/cart')) {
+                    e.preventDefault();
+                    const url = removeLink.href;
+
+                    axios.get(url, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => {
+                            if (response.data.success) {
+                                syncAllCartUIs(response.data);
+                            }
+                        })
+                        .catch(error => console.error('Error removing item:', error));
+                }
+            });
+        });
     </script>
-    </body>
+    <script>
+        $(document).on('click', '.js-plus', function() {
+            let container = $(this).closest('.js-quantity');
+            let input = container.find('.js-result');
+            let currentVal = parseInt(input.val()) || 0;
+            input.val(currentVal + 1);
+        });
 
-    <!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/home-v3.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Feb 2026 11:04:04 GMT -->
+        $(document).on('click', '.js-minus', function() {
+            let container = $(this).closest('.js-quantity');
+            let input = container.find('.js-result');
+            let currentVal = parseInt(input.val()) || 0;
 
-    </html>
+            if (currentVal > 1) {
+                input.val(currentVal - 1);
+            }
+        });
+    </script>

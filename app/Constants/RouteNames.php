@@ -6,10 +6,30 @@ class RouteNames
 {
     public const LOGIN = 'login';
     public const LOGOUT = 'logout';
-    public const DASHBOARD = 'account.dashboard';
+    public const DASHBOARD = 'administrator.dashboard';
 
-    // Auth
+    // Admin Auth
+    public const ADMIN_LOGIN = 'administrator.login';
+    public const ADMIN_LOGOUT = 'administrator.logout';
+    public const ADMIN_AUTH_LOGIN_POST = 'administrator.login.post';
+    public const ADMIN_FORGOT_PASSWORD = 'administrator.password.forgot';
+    public const ADMIN_FORGOT_PASSWORD_POST = 'administrator.password.forgot.post';
+    public const ADMIN_RESET_PASSWORD = 'administrator.password.reset';
+    public const ADMIN_RESET_PASSWORD_POST = 'administrator.password.reset.post';
+
+    // Auth (Website)
     public const AUTH_LOGIN_POST = 'login.post';
+    public const REGISTER = 'register';
+    public const REGISTER_POST = 'register.post';
+    public const OTP_VERIFY = 'otp.verify';
+    public const OTP_VERIFY_POST = 'otp.verify.post';
+    public const OTP_RESEND = 'otp.resend';
+    public const OTP_LOGIN = 'otp.login';
+    public const OTP_LOGIN_POST = 'otp.login.post';
+    public const FORGOT_PASSWORD = 'password.forgot';
+    public const FORGOT_PASSWORD_POST = 'password.forgot.post';
+    public const RESET_PASSWORD = 'password.reset';
+    public const RESET_PASSWORD_POST = 'password.reset.post';
 
     //Errors
     public const FORBIDDEN_ERROR = 'errors.forbiddenerror';
@@ -26,6 +46,11 @@ class RouteNames
     public const USER_EDIT = 'account.users.user-edit';
     public const USER_UPDATE = 'account.users.user-update';
     public const USER_DELETE = 'account.users.user-delete';
+
+    // Profile
+    public const PROFILE_SETTINGS = 'account.profile.settings';
+    public const PROFILE_UPDATE = 'account.profile.update';
+    public const PROFILE_CHANGE_PASSWORD = 'account.profile.change-password';
 
     // Users  Details
     public const USER_DETAIL_ADD = 'account.users.user-details-add';
@@ -47,21 +72,23 @@ class RouteNames
 
     // Categories
     public const CATEGORY_LIST   = 'account.categories.list';
-    public const CATEGORY_ADD    = 'account.categories.add';
-    public const CATEGORY_STORE  = 'account.categories.store';
-    public const CATEGORY_SHOW   = 'account.categories.show';
-    public const CATEGORY_EDIT   = 'account.categories.edit';
-    public const CATEGORY_UPDATE = 'account.categories.update';
-    public const CATEGORY_DELETE = 'account.categories.delete';
+    public const ADMIN_CATEGORY_LIST   = 'administrator.admin.categories';
+    public const CATEGORY_ADD    = 'administrator.categories.add';
+    public const CATEGORY_STORE  = 'administrator.categories.store';
+    public const CATEGORY_SHOW   = 'administrator.categories.show';
+    public const CATEGORY_EDIT   = 'administrator.categories.edit';
+    public const CATEGORY_UPDATE = 'administrator.categories.update';
+    public const CATEGORY_DELETE = 'administrator.categories.delete';
 
     //Products
     public const PRODUCT_LIST   = 'account.products.list';
-    public const PRODUCT_ADD    = 'account.products.add';
-    public const PRODUCT_STORE  = 'account.products.store';
-    public const PRODUCT_SHOW   = 'account.products.show';
-    public const PRODUCT_EDIT   = 'account.products.edit';
-    public const PRODUCT_UPDATE = 'account.products.update';
-    public const PRODUCT_DELETE = 'account.products.delete';
+    public const ADMIN_PRODUCT_LIST   = 'administrator.products';
+    public const PRODUCT_ADD    = 'administrator.products.add';
+    public const PRODUCT_STORE  = 'administrator.products.store';
+    public const PRODUCT_SHOW   = 'administrator.products.show';
+    public const PRODUCT_EDIT   = 'administrator.products.edit';
+    public const PRODUCT_UPDATE = 'administrator.products.update';
+    public const PRODUCT_DELETE = 'administrator.products.delete';
 
     // Orders
     public const ORDER_LIST   = 'account.orders.list';
@@ -71,6 +98,7 @@ class RouteNames
     public const ORDER_EDIT   = 'account.orders.edit';
     public const ORDER_UPDATE = 'account.orders.update';
     public const ORDER_DELETE = 'account.orders.delete';
+    public const ORDER_SUCCESS = 'account.orders.success';
 
     // Order Items
     public const ORDER_ITEM_ADD    = 'account.orders.items.add';
@@ -89,5 +117,25 @@ class RouteNames
 
     //Website Constants
     public const HOME = 'website.index';
+    public const ABOUT = 'website.about';
+    public const CART = 'website.cart';
+    public const CHECKOUT = 'website.checkout';
+    public const CONTACT = 'website.contact';
+    public const FAQ = 'website.faq';
+    public const MY_ACCOUNT = 'website.my-account';
+    public const PRIVACY = 'website.privacy';
+    public const TERMS_AND_CONDITIONS = 'website.terms-and-conditions';
+    public const TRACK_YOUR_ORDER = 'website.track-your-order';
+    public const WISHLIST = 'website.wishlist';
+    public const CART_ADD = 'website.cart.add';
+    public const CART_UPDATE = 'website.cart.update';
+    public const CART_REMOVE = 'website.cart.remove';
+    public const CART_CLEAR = 'website.cart.clear';
+    public const CART_THRESHOLD_ADD = 'cart.threshold.add';
+    public const CART_THRESHOLD_STORE = 'cart.threshold.store';
+    public const CHECKOUT_PROCESS = 'website.checkout.process';
+    public const ADMIN_ORDER_LIST = 'administrator.orders';
+    public const ADMIN_ORDER_SHOW = 'administrator.orders.show';
+    public const ADMIN_ORDER_UPDATE_STATUS = 'administrator.orders.update-status';
 
 }

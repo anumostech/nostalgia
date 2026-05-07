@@ -15,11 +15,19 @@ class Product extends Model
         'slug',
         'description',
         'image',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
         'price',
         'vat_percentage',
         'stock_quantity',
         'unit',
-        'status'
+        'status',
+        'is_featured',
+        'is_recommend',
+        'is_top_rated',
+        'is_onsale'
     ];
 
     // Product belongs to category

@@ -7,12 +7,24 @@ use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        // web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
+        using: function () {
+            Route::middleware('web')->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(base_path('routes/products.php'));
+            Route::middleware('web')->group(base_path('routes/categories.php'));
+        }
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'verified_user' => \App\Http\Middleware\EnsureUserIsVerified::class,
+        ]);
+
+        $middleware->redirectTo(
+            guests: '/login',
+            users: '/'
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

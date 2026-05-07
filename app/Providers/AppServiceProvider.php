@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
+use App\Models\Cart;
 use App\Models\Product;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrap();
+        Paginator::defaultView('vendor.pagination.custom');
 
         view()->composer('*', function ($view) {
             $categories = Category::with(['products' => function ($query) {
@@ -31,7 +32,33 @@ class AppServiceProvider extends ServiceProvider
                 ->where('status', 1)
                 ->get();
 
-            $view->with('categories', $categories);
+            $cartCount = 0;
+            $cartItemQuantities = [];
+            $cartProductIds = [];
+            if (request()->hasSession()) {
+                if (auth()->check()) {
+                    $cart = Cart::where('user_id', auth()->id())->first();
+                } else {
+                    $cart = Cart::where('session_id', \Illuminate\Support\Facades\Session::getId())->first();
+                }
+                if ($cart) {
+                    $cartItems = $cart->items()
+                        ->select('id', 'product_id', 'quantity')
+                        ->get();
+
+                    $cartCount = $cartItems->sum('quantity');
+                    $cartItemQuantities = $cartItems->keyBy('product_id');
+                    $cartProductIds = $cartItemQuantities->keys()->toArray();
+                }
+            }
+
+
+            $view->with([
+                'categories' => $categories,
+                'cartCount' => $cartCount,
+                'cartItemQuantities' => $cartItemQuantities,
+                'cartProductIds' => $cartProductIds
+            ]);
         });
 
         view()->composer('footer', function ($view) {
