@@ -59,6 +59,12 @@
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
+                        <a href="{{ route('administrator.reviews.index') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-star"></i></span>
+                            <span class="nxl-mtext">Reviews</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-settings"></i></span>
                             <span class="nxl-mtext">Settings</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
