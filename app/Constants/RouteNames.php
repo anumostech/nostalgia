@@ -137,5 +137,6 @@ class RouteNames
     public const ADMIN_ORDER_LIST = 'administrator.orders';
     public const ADMIN_ORDER_SHOW = 'administrator.orders.show';
     public const ADMIN_ORDER_UPDATE_STATUS = 'administrator.orders.update-status';
+    public const PRODUCT_REVIEW_STORE = 'website.product.review.store';
 
 }

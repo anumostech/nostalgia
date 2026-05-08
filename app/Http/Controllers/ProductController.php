@@ -23,9 +23,37 @@ class ProductController extends Controller
             ->take(5)
             ->get();
 
-        $products = Product::where('status', 1)
-            ->latest()
-            ->paginate(15);
+        $query = Product::with('category')->where('status', 1);
+
+        if ($request->has('price_range')) {
+            $range = explode(';', $request->price_range);
+            if (count($range) == 2) {
+                $min = (float)$range[0];
+                $max = (float)$range[1];
+                $query->whereBetween('price', [$min, $max]);
+            }
+        }
+
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        switch ($request->sort_by) {
+            case 'price_low_high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high_low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'latest':
+                $query->latest();
+                break;
+            default:
+                $query->latest();
+                break;
+        }
+
+        $products = $query->paginate(15);
 
         if ($request->ajax()) {
             return view('components.product-items', compact('products'))->render();
@@ -60,7 +88,9 @@ class ProductController extends Controller
 
     public function showProduct($id)
     {
-        $product = Product::with('category')
+        $product = Product::with(['category', 'reviews' => function($query) {
+                $query->where('status', 1)->latest();
+            }])
             ->where('id', $id)
             ->where('status', 1)
             ->firstOrFail();

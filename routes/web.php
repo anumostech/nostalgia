@@ -45,6 +45,7 @@ Route::get('/track-your-order', [HomeController::class, 'indexTrackYourOrder'])-
 
 Route::get('/products', [ProductController::class, 'indexProduct'])->name(RouteNames::PRODUCT_LIST);
 Route::get('/product/{product_id}', [ProductController::class, 'showProduct'])->name(RouteNames::PRODUCT_SHOW);
+Route::post('/product/review/store', [\App\Http\Controllers\ReviewController::class, 'store'])->name(RouteNames::PRODUCT_REVIEW_STORE);
 Route::get('/categories', [CategoryController::class, 'index'])->name(RouteNames::CATEGORY_LIST);
 Route::get('/categories/{category_id}', [CategoryController::class, 'showCategory'])->name(RouteNames::CATEGORY_SHOW);
 

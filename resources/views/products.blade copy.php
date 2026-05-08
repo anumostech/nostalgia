@@ -145,7 +145,129 @@
                 </div>
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
-                
+                <!-- Recommended Products -->
+                <div class="mb-6 d-none d-xl-block">
+                    <div class="position-relative">
+                        <div class="border-bottom border-color-1 mb-2">
+                            <h3 class="d-inline-block section-title section-title__full mb-0 pb-2 font-size-22">Recommended Products</h3>
+                        </div>
+                        <div class="js-slick-carousel u-slick position-static overflow-hidden u-slick-overflow-visble pb-7 pt-2 px-1"
+                            data-pagi-classes="text-center right-0 bottom-1 left-0 u-slick__pagination u-slick__pagination--long mb-0 z-index-n1 mt-3 mt-md-0"
+                            data-slides-show="5"
+                            data-slides-scroll="1"
+                            data-arrows-classes="position-absolute top-0 font-size-17 u-slick__arrow-normal top-10"
+                            data-arrow-left-classes="fa fa-angle-left right-1"
+                            data-arrow-right-classes="fa fa-angle-right right-0"
+                            data-responsive='[{
+                                      "breakpoint": 1400,
+                                      "settings": {
+                                        "slidesToShow": 4
+                                      }
+                                    }, {
+                                        "breakpoint": 1200,
+                                        "settings": {
+                                          "slidesToShow": 4
+                                        }
+                                    }, {
+                                      "breakpoint": 992,
+                                      "settings": {
+                                        "slidesToShow": 3
+                                      }
+                                    }, {
+                                      "breakpoint": 768,
+                                      "settings": {
+                                        "slidesToShow": 2
+                                      }
+                                    }, {
+                                      "breakpoint": 554,
+                                      "settings": {
+                                        "slidesToShow": 2
+                                      }
+                                    }]'>
+                            @foreach($recommend_products as $product)
+
+                            <div class="js-slide products-group">
+                                <div class="product-item">
+                                    <div class="product-item__outer h-100">
+                                        <div class="product-item__inner px-wd-4 p-2 p-md-3">
+
+                                            <div class="product-item__body pb-xl-2">
+                                                <div class="mb-2">
+                                                    <a href="{{ url('product/'.$product->id) }}"
+                                                        class="d-block text-center">
+                                                        <img class="img-fluid"
+                                                            src="{{ asset('storage/products/'.$product->image) }}"
+                                                            alt="{{ $product->name }}">
+                                                    </a>
+                                                </div>
+
+                                                <div class="mb-2">
+                                                    <a href="{{ url('products?category='.$product->category_id) }}"
+                                                        class="font-size-12 text-gray-5">
+                                                        {{ $product->category->name ?? 'Category' }}
+                                                    </a>
+                                                </div>
+
+                                                <h5 class="mb-1 product-item__title">
+                                                    <a href="{{ url('product/'.$product->id) }}"
+                                                        class="text-blue font-weight-bold">
+                                                        {{ $product->name }}
+                                                    </a>
+                                                </h5>
+
+                                                <div class="flex-center-between mb-1">
+                                                    <div class="prodcut-price">
+                                                        <div class="text-gray-100">
+                                                            <div class="d-flex align-items-center"><img src="{{  asset('assets/img/dihram.webp') }}" height="20" width="20" />{{ number_format($product->price, 2) }}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-xl-block prodcut-add-cart" id="cart-control-{{ $product->id }}">
+                                                        @if(isset($cartItemQuantities[$product->id]))
+                                                        <div class="d-flex align-items-center justify-content-center bg-primary rounded-pill">
+                                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="decrement" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                                <i class="fa {{ $cartItemQuantities[$product->id]->quantity == 1 ? 'fa-trash' : 'fa-minus' }} font-size-10"></i>
+                                                            </button>
+                                                            <span class="mx-2 font-weight-bold text-white qty-display-{{ $cartItemQuantities[$product->id]->id }}">{{ $cartItemQuantities[$product->id]->quantity }}</span>
+                                                            <button type="button" class="btn btn btn-primary update-cart-qty" data-cart-item-id="{{ $cartItemQuantities[$product->id]->id }}" data-action="increment" style="padding:0.5rem 0.5rem;font-size:0.5rem;">
+                                                                <i class="fa fa-plus font-size-10"></i>
+                                                            </button>
+                                                        </div>
+                                                        @else
+                                                        <form class="add-to-cart-form" action="{{ route(\App\Constants\RouteNames::CART_ADD) }}" method="POST" data-product-id="{{ $product->id }}">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="quantity" value="1">
+                                                            <button type="submit" class="btn-add-cart btn-primary transition-3d-hover">
+                                                                <i class="ec ec-add-to-cart"></i>
+                                                            </button>
+                                                        </form>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- <div class="product-item__footer">
+                                                <div class="border-top pt-2 flex-center-between flex-wrap">
+                                                    <a href="{{ url('wishlist/'.$product->id) }}"
+                                                        class="text-gray-6 font-size-13">
+                                                        <i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist
+                                                    </a>
+                                                </div>
+                                            </div> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Recommended Products -->
                 <!-- Shop-control-bar Title -->
                 <div class="flex-center-between mb-3">
                     <h3 class="font-size-25 mb-0">Shop</h3>
@@ -189,21 +311,20 @@
                         </ul>
                     </div>
                     <div class="d-flex">
-                        <form method="get" action="{{ url()->current() }}">
-                            @foreach(request()->except(['sort_by', 'page']) as $key => $value)
-                                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                            @endforeach
+                        <form method="get">
                             <!-- Select -->
-                            <select name="sort_by" class="js-select selectpicker dropdown-select max-width-200 max-width-160-sm right-dropdown-0 px-2 px-xl-0"
-                                data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0"
-                                onchange="this.form.submit()">
-                                <option value="default" {{ request('sort_by') == 'default' ? 'selected' : '' }}>Default sorting</option>
-                                <option value="price_low_high" {{ request('sort_by') == 'price_low_high' ? 'selected' : '' }}>Sort by price: low to high</option>
-                                <option value="price_high_low" {{ request('sort_by') == 'price_high_low' ? 'selected' : '' }}>Sort by price: high to low</option>
-                                <option value="latest" {{ request('sort_by') == 'latest' ? 'selected' : '' }}>Sort by latest</option>
+                            <select class="js-select selectpicker dropdown-select max-width-200 max-width-160-sm right-dropdown-0 px-2 px-xl-0"
+                                data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0">
+                                <option value="one" selected>Default sorting</option>
+                                <option value="two">Sort by popularity</option>
+                                <option value="three">Sort by average rating</option>
+                                <option value="four">Sort by latest</option>
+                                <option value="five">Sort by price: low to high</option>
+                                <option value="six">Sort by price: high to low</option>
                             </select>
                             <!-- End Select -->
                         </form>
+
                     </div>
                 </div>
                 <!-- End Shop-control-bar -->
