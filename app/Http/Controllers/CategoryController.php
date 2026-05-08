@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,6 +18,8 @@ class CategoryController extends Controller
         $categories = Category::where('status', 1)
             ->latest()
             ->get();
+            
+        return view('categories', compact('categories'));
     }
 
     public function indexAdminCategory()
@@ -33,16 +35,44 @@ class CategoryController extends Controller
     /**
      * Display products by category (slug based)
      */
-    public function showCategory($id)
+    public function showCategory(Request $request, $id)
     {
         $category = Category::where('id', $id)
             ->where('status', 1)
             ->firstOrFail();
 
-        $products = Product::where('category_id', $category->id)
-            ->where('status', 1)
-            ->latest()
-            ->paginate(15);
+        $query = Product::with('category')->where('category_id', $category->id)
+            ->where('status', 1);
+
+        if ($request->has('price_range')) {
+            $range = explode(';', $request->price_range);
+            if (count($range) == 2) {
+                $min = (float)$range[0];
+                $max = (float)$range[1];
+                $query->whereBetween('price', [$min, $max]);
+            }
+        }
+
+        switch ($request->sort_by) {
+            case 'price_low_high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high_low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'latest':
+                $query->latest();
+                break;
+            default:
+                $query->latest();
+                break;
+        }
+
+        $products = $query->paginate(15);
+
+        if ($request->ajax()) {
+            return view('components.product-items', compact('products'))->render();
+        }
 
         $recommend_products = Product::where('status', 1)
             ->where('is_recommend', 1)
