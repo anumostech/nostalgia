@@ -132,6 +132,12 @@ Route::prefix('administrator')->middleware('auth:admin')->group(function () {
     Route::get('/customers/edit/{id}', [CustomerController::class, 'edit'])->name(RouteNames::CUSTOMER_EDIT);
     Route::post('/customers/update/{id}', [CustomerController::class, 'update'])->name(RouteNames::CUSTOMER_UPDATE);
     Route::get('/customers/delete/{id}', [CustomerController::class, 'destroy'])->name(RouteNames::CUSTOMER_DELETE);
+
+    // Admin Reviews
+    Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'indexAdmin'])->name('administrator.reviews.index');
+    Route::get('/reviews/edit/{id}', [\App\Http\Controllers\ReviewController::class, 'edit'])->name('administrator.reviews.edit');
+    Route::post('/reviews/update/{id}', [\App\Http\Controllers\ReviewController::class, 'update'])->name('administrator.reviews.update');
+    Route::get('/reviews/delete/{id}', [\App\Http\Controllers\ReviewController::class, 'destroy'])->name('administrator.reviews.delete');
 });
 
 

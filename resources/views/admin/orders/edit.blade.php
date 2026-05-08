@@ -71,9 +71,9 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-12 text-end">
-                                            <a href="{{ route(\App\Constants\RouteNames::ADMIN_ORDER_LIST) }}" class="btn btn-light-brand">Cancel</a>
+                                        <div class="col-md-12 d-flex justify-content-start gap-2">
                                             <button type="submit" class="btn btn-primary">Update Order</button>
+                                            <a href="{{ route(\App\Constants\RouteNames::ADMIN_ORDER_LIST) }}" class="btn btn-light-brand">Cancel</a>
                                         </div>
                                     </div>
                                 </form>
