@@ -101,7 +101,7 @@
                                 <div class="ml-md-3 text-gray-9 font-size-14">
                                     Availability:
                                     <span class="text-green font-weight-bold">
-                                        {{ $product->stock ?? 0 }} in stock
+                                        {{ $product->stock_quantity ?? 0 }} in stock
                                     </span>
                                 </div>
                             </div>
